@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 .venv/
-venv
+.venv
 data/certbot/
 db.sqlite3
 __pycache__/
