@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/christinaneumayer/Documents/andreas/development/repos/wagtailraw/.venv"
+VIRTUAL_ENV="/Users/christinaneumayer/Documents/andreas/development/repos/wagtail-cms/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
