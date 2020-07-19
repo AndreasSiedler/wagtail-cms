@@ -25,7 +25,8 @@
         {% endwith %}
 
         <p>{{ post.intro }}</p>
-        {{ post.body|richtext }}
+        {% comment %} {{ post.body|richtext }} {% endcomment %}
+        {% include_block post.body %}
     {% endwith %}
     {% endfor %}
 
