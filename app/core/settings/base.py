@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'search',
     'blog',
     'flex',
+    'form',
     'streams',
 
     'wagtail.contrib.forms',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'widget_tweaks',
+    'wagtailmetadata',
 
     'django.contrib.admin',
     'django.contrib.auth',
