@@ -3,9 +3,9 @@ MAINTAINER ckreuzberger@localhost
 
 WORKDIR /app
 
-COPY ./app/requirements.txt /app/requirements.txt
+COPY ./app/requirements /app/requirements
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements/prod.txt
 
 COPY ./app /app
 
