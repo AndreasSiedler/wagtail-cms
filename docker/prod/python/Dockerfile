@@ -1,6 +1,5 @@
 FROM python:3.6
-MAINTAINER ckreuzberger@localhost
-
+MAINTAINER andras.siedler@gmail.com
 WORKDIR /app
 
 COPY ./app/requirements /app/requirements
