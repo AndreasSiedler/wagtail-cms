@@ -34,7 +34,7 @@ class BlogTagIndexPage(MetadataPageMixin, Page):
         return context
 
 
-class BlogIndexPage(Page):
+class BlogIndexPage(MetadataPageMixin, Page):
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
@@ -52,7 +52,7 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('BlogPage', on_delete=models.CASCADE, related_name='tagged_items')
 
 
-class BlogPage(Page):
+class BlogPage(MetadataPageMixin, Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = StreamField([

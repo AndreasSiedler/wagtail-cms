@@ -10,11 +10,11 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtailmetadata.models import MetadataPageMixin
 
 
-class FormField(MetadataPageMixin, AbstractFormField):
+class FormField(AbstractFormField):
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
 
 
-class FormPage(AbstractEmailForm):
+class FormPage(MetadataPageMixin, AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
 
