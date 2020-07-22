@@ -3,7 +3,7 @@
 .venv/
 .venv
 data/certbot/
-db.sqlite3
+db/
 __pycache__/
 # app/tickets/settings/prod.py
 app/debug.log
