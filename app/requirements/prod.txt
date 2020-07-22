@@ -1,3 +1,4 @@
 -r base.txt
 
 gunicorn==19.8.*
+django_compressor>=2.4,<2.5

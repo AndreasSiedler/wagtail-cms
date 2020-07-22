@@ -34,6 +34,8 @@ LOGGING = {
 }
 
 # Compressor SETTINGS
+STATICFILES_FINDERS += ['compressor.finders.CompressorFinder',]
+
 COMPRESS_ENABLED = True
 # COMPRESS_OFFLINE = True
 
