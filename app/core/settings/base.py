@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'taggit',
     'compressor',
     'wagtailmetadata',
+    'django.contrib.sitemaps',
 
     'django.contrib.admin',
     'django.contrib.auth',
