@@ -1,11 +1,7 @@
 version: '3'
 
 volumes:
-<<<<<<< HEAD
   db:
-=======
-  db.sqlite3
->>>>>>> 7e9b71d22561aed9816a56a9776fa3137efdf350
 
 services:
   python:
@@ -22,9 +18,5 @@ services:
       - 7000:8000
     command: gunicorn -w 4 core.wsgi -b 0.0.0.0:8000
     volumes:
-<<<<<<< HEAD
       - db:/app/db
-=======
-      - db.sqlite3:/app/db.sqlite3
->>>>>>> 7e9b71d22561aed9816a56a9776fa3137efdf350
 
