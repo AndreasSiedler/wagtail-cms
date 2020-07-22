@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load static compress wagtailuserbar %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -18,7 +18,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
+        {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        {% endcompress %}
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -31,7 +34,10 @@
         {% block content %}{% endblock %}
 
         {# Global javascript #}
+        {% compress js  %}
         <script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        {% endcompress %}
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
