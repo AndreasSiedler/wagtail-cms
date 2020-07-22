@@ -4,8 +4,9 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 
+from wagtailmetadata.models import MetadataPageMixin
 
-class HomePage(Page):
+class HomePage(MetadataPageMixin, Page):
     body = RichTextField(blank=True)
     
     content_panels = Page.content_panels + [
