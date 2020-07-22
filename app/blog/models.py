@@ -16,11 +16,11 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
 from wagtail.snippets.models import register_snippet
-
+from wagtailmetadata.models import MetadataPageMixin
 
 
 # Create your models here.
-class BlogTagIndexPage(Page):
+class BlogTagIndexPage(MetadataPageMixin, Page):
 
     def get_context(self, request):
 

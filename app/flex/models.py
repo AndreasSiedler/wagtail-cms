@@ -9,8 +9,10 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core import blocks
 from wagtail.embeds.blocks import EmbedBlock
 
+from wagtailmetadata.models import MetadataPageMixin
+
 # Create your models here.
-class FlexPage(Page):
+class FlexPage(MetadataPageMixin, Page):
     intro = models.CharField(max_length=250, blank=True)
     body = StreamField([
         ('heading', blocks.CharBlock(classname="full title")),

@@ -7,8 +7,10 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
+from wagtailmetadata.models import MetadataPageMixin
 
-class FormField(AbstractFormField):
+
+class FormField(MetadataPageMixin, AbstractFormField):
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
 
 
