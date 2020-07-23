@@ -16,8 +16,6 @@ services:
       - /statics/wagtail-cms/media_files:/app/media
       - db:/app/db
       - ./app:/app
-    ports:
-      - 7000:8000
     command: gunicorn -w 4 core.wsgi -b 0.0.0.0:8000
     networks:
       static-network:
