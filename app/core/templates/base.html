@@ -15,8 +15,9 @@
 
         {# Global stylesheets #}
         {% compress css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'vendors/tailwind.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fonts/sourcs-sans-pro.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/tailwind.css' %}">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
