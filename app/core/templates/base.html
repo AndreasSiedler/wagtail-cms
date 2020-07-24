@@ -16,12 +16,12 @@
         {# Global stylesheets #}
         {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-        {% endcompress %}
-
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+        {% endcompress %}
+
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -32,11 +32,11 @@
         {# Global javascript #}
         {% compress js  %}
         <script type="text/javascript" src="{% static 'js/core.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        {% endcompress %}
-
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
+        {% endcompress %}
+
+
     </body>
 </html>
