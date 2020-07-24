@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'compressor',
     'wagtailmetadata',
     'django.contrib.sitemaps',
+    'wagtail.contrib.modeladmin',
+    'wagtailmenus',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -84,6 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'wagtailmenus.context_processors.wagtailmenus',
             ],
         },
     },
