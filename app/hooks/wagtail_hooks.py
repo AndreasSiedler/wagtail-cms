@@ -4,6 +4,20 @@ from django.utils.safestring import mark_safe
 
 from wagtail.core import hooks
 
+@hooks.register('insert_editor_css')
+def editor_css():
+    return format_html(
+        '<link rel="stylesheet" href="{}">',
+        static('css/custom_editor.css')
+    )
+
+@hooks.register('insert-editor_js')
+def editor_js():
+    return format_html(
+        '<script src="{}"></script>',
+        static('js/custom-editor.js')
+    )
+
 # @hooks.register("insert_global_admin_css", order=100)
 # def global_admin_css():
 #     """Add /static/css/custom.css to the admin."""
