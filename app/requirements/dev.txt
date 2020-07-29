@@ -1,4 +1,4 @@
 -r base.txt
 
-debug_toolbar==2.2.*
+django-debug-toolbar==2.2.*
 ipython==7.16.*

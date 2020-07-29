@@ -1,16 +1,8 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
-class Design(blocks.StreamBlock):
-    padding = blocks.ChoiceBlock(choices=[
-        ('Padding 2', 'p-2')
-    ])
-    margin = blocks.ChoiceBlock(choices=[
-        ('Margin 2', 'm-2')
-    ])
 
 class TextAndImage(blocks.StructBlock):
-    design = Design()
     title = blocks.CharBlock(required=False, help_text="Add your Title")
     text = blocks.RichTextBlock(required=True, help_text="Add your Text")
     image = ImageChooserBlock(required=True, help_text="Choose your Image")

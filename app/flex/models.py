@@ -4,7 +4,7 @@ from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 
-from streams import blocks
+from streams.blocks import default, hero
 from wagtailmetadata.models import MetadataPageMixin
 
 # Create your models here.
@@ -13,10 +13,11 @@ class FlexPage(MetadataPageMixin, Page):
     content = StreamField(
         [
             # Custom Blocks
-            ("text_and_image", blocks.TextAndImage()),
-            ("title_and_text", blocks.TitleAndText()),
-            ("full_richtext", blocks.RichTextBlock()),
-            ("simple_richtext", blocks.SimpleRichTextBlock()),
+            ("hero", hero.HeroDefault()),
+            ("text_and_image", default.TextAndImage()),
+            ("title_and_text", default.TitleAndText()),
+            ("full_richtext", default.RichTextBlock()),
+            ("simple_richtext", default.SimpleRichTextBlock()),
         ], 
         null=True, 
         blank=True

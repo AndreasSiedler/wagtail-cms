@@ -8,10 +8,10 @@ from wagtail.core import hooks
 def editor_css():
     return format_html(
         '<link rel="stylesheet" href="{}">',
-        static('css/custom_editor.css')
+        static('css/custom-editor.css')
     )
 
-@hooks.register('insert-editor_js')
+@hooks.register('insert_editor_js')
 def editor_js():
     return format_html(
         '<script src="{}"></script>',
