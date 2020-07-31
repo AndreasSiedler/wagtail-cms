@@ -11,7 +11,7 @@ def editor_css():
         static('css/custom-editor.css')
     )
 
-@hooks.register('insert_editor_js')
+@hooks.register('insert_editor_js', order=100)
 def editor_js():
     return format_html(
         '<script src="{}"></script>',
