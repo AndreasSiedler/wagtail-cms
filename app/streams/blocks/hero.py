@@ -23,15 +23,20 @@ class HeroDefault(blocks.StructBlock):
         ], 
         default='simple_centered',
         classname=(
-            'wagtailuiplus__choice-handler '
-            'wagtailuiplus__choice-handler--layout_type'
+            'wagtailuiplus__choice-handler'
         ))
     title = blocks.CharBlock(
         required=False, 
         help_text="Add your Title",
         classname=(
-            'wagtailuiplus__choice-handler-target--layout_type '
-            'wagtailuiplus__choice-handler-hidden-if--image_right'
+            'wagtailuiplus__show_if image_right'
+        ),
+    )
+    title2 = blocks.CharBlock(
+        required=False, 
+        help_text="Add your Title",
+        classname=(
+            'wagtailuiplus__show_if simple_centered'
         ),
     )
     text = blocks.RichTextBlock(required=True, help_text="Add your Text")
