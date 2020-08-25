@@ -40,6 +40,7 @@ class BlogIndexPage(MetadataPageMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
     ]
+
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
@@ -104,6 +105,7 @@ class BlogPageGalleryImage(Orderable):
         ImageChooserPanel('image'),
         FieldPanel('caption'),
     ]
+
 
 @register_snippet
 class BlogCategory(models.Model):
