@@ -8,7 +8,7 @@ __pycache__/
 app/debug.log
 app/media
 app/static
-app/db
+db.sqlite3
 
 # .env files
 .env
