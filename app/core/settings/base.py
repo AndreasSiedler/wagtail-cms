@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'form',
     'streams',
     'hooks',
+    'subscription',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
