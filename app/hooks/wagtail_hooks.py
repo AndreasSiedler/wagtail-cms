@@ -4,12 +4,12 @@ from django.utils.safestring import mark_safe
 
 from wagtail.core import hooks
 
-@hooks.register('insert_editor_css')
-def editor_css():
-    return format_html(
-        '<link rel="stylesheet" href="{}">',
-        static('css/custom-editor.css')
-    )
+# @hooks.register('insert_editor_css')
+# def editor_css():
+#     return format_html(
+#         '<link rel="stylesheet" href="{}">',
+#         static('css/custom-editor.css')
+#     )
 
 @hooks.register('insert_editor_js', order=100)
 def editor_js():
