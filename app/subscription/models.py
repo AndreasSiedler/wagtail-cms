@@ -14,6 +14,8 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 
+from wagtailmetadata.models import MetadataPageMixin
+
 
 from flatpickr import DatePickerInput
 
@@ -228,7 +230,7 @@ class Subscription(models.Model):
         return self.price
 
 
-class SubscriptionIndexPage(Page):
+class SubscriptionIndexPage(MetadataPageMixin, Page):
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [

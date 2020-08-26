@@ -6,4 +6,4 @@ wagtailmenus==3.0.*
 django_compressor>=2.4,<2.5
 braintree==3.57.*
 django-flatpickr==1.0.*
-
+django-crispy-forms==1.9.*
