@@ -7,6 +7,7 @@ from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from streams.blocks import default, hero
 from wagtailmetadata.models import MetadataPageMixin
 
+
 # Create your models here.
 class FlexPage(MetadataPageMixin, Page):
     intro = models.CharField(max_length=250, blank=True)
@@ -31,10 +32,6 @@ class FlexPage(MetadataPageMixin, Page):
     class Meta:
         verbose_name = "Flex Page"
         verbose_name_plural = "Flex Pages"
-
-
-
-
 
         # ('heading', blocks.CharBlock(classname="full title")),
         # ('paragraph', blocks.RichTextBlock()),
