@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'subscription',
     'shop',
     'custom',
+    'subscribers',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'wagtailmenus',
     'crispy_forms',
     'crispy_tailwind',
+    'wagtail_color_panel',
 
     'django.contrib.admin',
     'django.contrib.auth',
