@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'shop',
     'custom',
     'subscribers',
+    'theme',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
