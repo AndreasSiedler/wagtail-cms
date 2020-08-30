@@ -5,6 +5,7 @@ from wagtail.contrib.modeladmin.options import (
 )
 from theme.models import Header
 from wagtail.admin.edit_handlers import FieldPanel
+from theme.util import CustomURLHelper
 
 
 class ThemeHeaderModelAdmin(ModelAdmin):
@@ -13,6 +14,13 @@ class ThemeHeaderModelAdmin(ModelAdmin):
     panels = [
         FieldPanel('color'),
     ]
+    add_to_settings_menu = False
+    exclude_from_explorer = True
+    url_helper_class = CustomURLHelper
+
+    # def get_queryset(self, request):
+    #     qs = super().get_queryset(request)
+    #     return qs.filter(color="blau")
 
 
 # Register your models here.
