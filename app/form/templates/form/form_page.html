@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load tailwind_filters %}
 
 {% load wagtailcore_tags %}
 
@@ -7,9 +8,9 @@
 {% block content %}
         <h1>{{ page.title }}</h1>
         {{ page.intro|richtext }}
-        <form action="{% pageurl page %}" method="POST">
+        <form action="{% pageurl page %}" method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <input type="submit">
         </form>
 {% endblock %}

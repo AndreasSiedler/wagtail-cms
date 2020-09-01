@@ -1,9 +1,125 @@
 from django.db import models
+from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.admin.edit_handlers import (
+    ObjectList,
+    TabbedInterface,
+)
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail_color_panel.fields import ColorField
+from wagtail_color_panel.edit_handlers import NativeColorPanel
+from django.forms.widgets import Select
 
 
 # Create your models here.
 @register_setting
-class Header(BaseSetting):
-    color = models.CharField(max_length=100, blank=False, null=False)
-    is_creatable = False
+class Layout(BaseSetting):
+
+    header_logo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    header_background_color = ColorField(blank=True, null=True, help_text="Choose background color")
+    bad = models.CharField(
+        max_length = 1,
+        blank=True, null=True,
+    )
+
+    # body_background_color_type = ChoiceBlock(
+    #     required=True, 
+    #     choices=[
+    #         ('solid', 'Solid'),
+    #         ('linear_gradient', 'Linear Gradient')
+    #     ],
+    #     default='solid',
+    #     classname=(
+    #         'wagtailuiplus__choice-handler'
+    #     ))
+
+    body_background_color_solid = ColorField(
+        blank=True, 
+        null=True, 
+        help_text="Choose background color"
+        )
+
+    header_panels = [
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('header_logo'),
+                NativeColorPanel('header_background_color'),
+            ]
+        )
+    ]
+
+    body_panels = [
+        MultiFieldPanel([
+            FieldPanel(
+                'bad',
+                widget = Select(
+                    choices = (
+                        ('a','a'), ('b','b')
+                    )
+                )
+            ),
+            NativeColorPanel(
+                "body_background_color_solid",
+                classname=(
+                    'test'
+                )
+            ),
+        ])
+    ]
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(body_panels, heading="Body"),
+            ObjectList(header_panels, heading="Header"),
+        ]
+    )
+
+
+# Create your models here.
+# @register_setting
+# class SocialMedia(BaseSetting):
+#     """" Social media settings for our custom webite """
+
+#     facebook = models.URLField(blank=True, null=True, help_text="Facebook Url")
+#     twitter = models.URLField(blank=True, null=True, help_text="Twitter Url")
+#     youtube = models.URLField(blank=True, null=True, help_text="Youtube Url")
+
+#     header_logo = models.ForeignKey(
+#         'wagtailimages.Image',
+#         null=True,
+#         blank=True,
+#         on_delete=models.SET_NULL,
+#         related_name='+'
+#     )
+#     header_background_color = ColorField(blank=True, null=True, help_text="Choose background color")
+
+#     header_panels = [
+#         MultiFieldPanel(
+#             [
+#                 ImageChooserPanel('header_logo'),
+#                 NativeColorPanel('header_background_color'),
+#             ]
+#         )
+#     ]
+
+#     socia_media_panels = [
+#         MultiFieldPanel([
+#             FieldPanel("facebook"),
+#             FieldPanel("twitter"),
+#             FieldPanel("youtube"),
+#         ])
+#     ]
+
+#     edit_handler = TabbedInterface(
+#         [
+#             ObjectList(socia_media_panels, heading="Social"),
+#             ObjectList(header_panels, heading="Header"),
+#         ]
+#     )
+
