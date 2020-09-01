@@ -20,7 +20,7 @@ class HeroDefault(blocks.StructBlock):
         choices=[
             ('simple_centered', 'Simple centered'),
             ('image_right', 'Image on right')
-        ], 
+        ],
         default='simple_centered',
         classname=(
             'wagtailuiplus__choice-handler'
@@ -41,11 +41,7 @@ class HeroDefault(blocks.StructBlock):
     )
     text = blocks.RichTextBlock(required=True, help_text="Add your Text")
 
-
-
     class Meta:
         template = "streams/hero_default_block.html"
         icon = "view"
         label = "Hero Default"
-
-

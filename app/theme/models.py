@@ -1,5 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.admin.edit_handlers import (
     ObjectList,
@@ -8,12 +8,13 @@ from wagtail.admin.edit_handlers import (
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
+from django.forms.widgets import Select
 
 
 # Create your models here.
 @register_setting
 class Layout(BaseSetting):
-    """" Header settings """
+
     header_logo = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -22,6 +23,27 @@ class Layout(BaseSetting):
         related_name='+'
     )
     header_background_color = ColorField(blank=True, null=True, help_text="Choose background color")
+    bad = models.CharField(
+        max_length = 1,
+        blank=True, null=True,
+    )
+
+    # body_background_color_type = ChoiceBlock(
+    #     required=True, 
+    #     choices=[
+    #         ('solid', 'Solid'),
+    #         ('linear_gradient', 'Linear Gradient')
+    #     ],
+    #     default='solid',
+    #     classname=(
+    #         'wagtailuiplus__choice-handler'
+    #     ))
+
+    body_background_color_solid = ColorField(
+        blank=True, 
+        null=True, 
+        help_text="Choose background color"
+        )
 
     header_panels = [
         MultiFieldPanel(
@@ -32,16 +54,25 @@ class Layout(BaseSetting):
         )
     ]
 
-    """" Body settings """
-    body_background_color = ColorField(blank=True, null=True, help_text="Choose background color")
-
     body_panels = [
         MultiFieldPanel([
-            NativeColorPanel("body_background_color"),
+            FieldPanel(
+                'bad',
+                widget = Select(
+                    choices = (
+                        ('a','a'), ('b','b')
+                    )
+                )
+            ),
+            NativeColorPanel(
+                "body_background_color_solid",
+                classname=(
+                    'test'
+                )
+            ),
         ])
     ]
 
-    """" Tabs """
     edit_handler = TabbedInterface(
         [
             ObjectList(body_panels, heading="Body"),

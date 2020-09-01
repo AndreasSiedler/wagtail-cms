@@ -1,94 +1,185 @@
-// Helperfunctions
-const show_hide_elements = (el, value) => {
-  var parent_block = el.closest('.c-sf-block');
 
-  parent_block.querySelectorAll('.wagtailuiplus__show_if').forEach(function(el){
-    el.parentElement.style.display = 'none';
-  });
-
-  parent_block.querySelectorAll(`.wagtailuiplus__show_if.${value}`).forEach(function(el){
-    el.parentElement.style.display = 'block';
-  });
-}
-
-// DomContentLoaded
-(function() {
-  document.addEventListener('DOMContentLoaded', function() {
-    var container_list = document.getElementById('content-list');
-    console.log(container_list.querySelectorAll('.wagtailuiplus__choice-handler select'));
-    container_list.querySelectorAll('.wagtailuiplus__choice-handler select').forEach(function(el) {
-      show_hide_elements(el, el.value);
-    });
-  });
-})();
-
-// Detect new added Nodes
-(function() {
-
-  document.addEventListener('DOMContentLoaded', function() {
+//** **//
+//** On Page Load **//
+//** **//
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
 
     // Select the node that will be observed for mutations
-    const targetNode = document.getElementById('content-list');
+    const targetNode = document.getElementById('body-list');
 
+    //Append Setting Icons on Page Load
+    targetNode.querySelectorAll('.c-sf-block__actions').forEach(function (el) {
+      var button = document.createElement("button");        // Create setting button
+      button.setAttribute('class', 'c-sf-block__actions__single block-settings-button');
+      button.innerHTML = '<i class="icon icon-cog" aria-hidden="true"></i>';
+      button.onclick = function (e) {
+        e.preventDefault();
+        onActivateSettings(this);
+      }
+      el.appendChild(button);
+    })
+
+    //Append Choice Field Click Listeners
+    targetNode.querySelectorAll('.block_setting_choice, block_content_choice').forEach(function (el) {
+      el.addEventListener('change', function (event) {
+        onSelectChoice(el, event.target.value);
+      })
+    })
+
+    // Hide all Settings on Page Load
+    targetNode.querySelectorAll(".block_setting_field, .block_setting_choice, .block_setting_sub").forEach(function (el) {
+      el.parentElement.style.display = 'none';
+    })
+
+    // Style Sub Fields
+    targetNode.querySelectorAll(".block_setting_sub").forEach(function (el) {
+      el.parentElement.style.width = '60%';
+    })
+  })
+})();
+
+
+//** **//
+//** On Settings Clicked **//
+//** **//
+const onActivateSettings = (settingsButton) => {
+
+  //Change Button
+  settingsButton.setAttribute('style', 'color: #f37e77');
+  settingsButton.onclick = function (e) {
+    e.preventDefault();
+    onDeactivateSettings(this);
+  }
+  // Hide all Content fields
+  var parentContainer = settingsButton.closest('.c-sf-block');
+  parentContainer.querySelectorAll('.block_content_field').forEach(function (el) {
+    el.parentElement.style.display = 'none';
+  })
+  // Show all choice and field Setting fields
+  parentContainer.querySelectorAll(".block_setting_field").forEach(function (el) {
+    el.parentElement.style.display = 'block';
+  })
+  // Show all choice and field Setting fields
+  parentContainer.querySelectorAll(".block_setting_choice, block_content_choice").forEach(function (el) {
+    el.parentElement.style.display = 'block';
+    el.querySelectorAll("select").forEach(function (el) {
+      
+      const value = el.options[el.selectedIndex].value;
+      if (value) {
+        var parentContainer = el.closest('.c-sf-block');
+        // Show specific sub fields
+        parentContainer.querySelectorAll(`.block_setting_sub.${value}`).forEach(function (el) {
+          console.log(el);
+          el.parentElement.style.display = 'block';
+        })  
+      }
+    })
+  })
+  
+
+}
+
+const onDeactivateSettings = (settingsButton) => {
+
+  console.log("Deactivate Settings clicked");
+  //Change Button
+  settingsButton.setAttribute('style', 'color: none');
+  settingsButton.onclick = function (e) {
+    e.preventDefault();
+    onActivateSettings(this);
+  }
+  // Hide all Setting fields
+  var parentContainer = settingsButton.closest('.c-sf-block');
+  parentContainer.querySelectorAll('.block_setting_field, .block_setting_choice, .block_setting_sub').forEach(function (el) {
+    el.parentElement.style.display = 'none';
+  })
+  // Show all Content fields
+  var parentContainer = settingsButton.closest('.c-sf-block');
+  parentContainer.querySelectorAll('.block_content_field').forEach(function (el) {
+    el.parentElement.style.display = 'block';
+  })
+
+}
+
+
+//** **//
+//** On Select Coice Field **//
+//** **//
+const onSelectChoice = (selectField, value) => {
+  var parentContainer = selectField.closest('.c-sf-block');
+  console.log(`.block_setting_sub.${value}`);
+  //Hide all Sub Fields
+  parentContainer.querySelectorAll('.block_setting_sub').forEach(function (el) {
+    el.parentElement.style.display = 'none';
+  })
+  // Show specific sub fields
+  if(value) {
+    parentContainer.querySelectorAll(`.block_setting_sub.${value}`).forEach(function (el) {
+      console.log(el);
+      el.parentElement.style.display = 'block';
+    })
+  }
+}
+
+
+//** **//
+//** On Select Block Added **//
+//** **//
+(function () {
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // Select the node that will be observed for mutations
+    const targetNode = document.getElementById('body-list');
     // Options for the observer (which mutations to observe)
     const config = { attributes: false, childList: true, subtree: false };
-
     // Callback function to execute when mutations are observed
-    const callback = function(mutationsList, observer) {
-        // Use traditional 'for loops' for IE 11
-        for(let mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                console.log('A child node has been added or removed.');
-                mutation.addedNodes.forEach(function(container){
-                  container.querySelectorAll('.wagtailuiplus__show_if').forEach(function (el) {
-                    el.parentElement.style.display = 'none'
-                  });
-                })
-            }
-            // else if (mutation.type === 'attributes') {
-            //     console.log('The ' + mutation.attributeName + ' attribute was modified.');
-            // }
+    const callback = function (mutationsList, observer) {
+      // Use traditional 'for loops' for IE 11
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          console.log('A child node has been added or removed.', );
+          mutation.addedNodes.forEach(function (container) {
+            
+            console.log(container);
+            //Append Setting Icons on Page Load
+            container.querySelectorAll('.c-sf-block__actions').forEach(function (el) {
+              var button = document.createElement("button");        // Create setting button
+              button.setAttribute('class', 'c-sf-block__actions__single block-settings-button');
+              button.innerHTML = '<i class="icon icon-cog" aria-hidden="true"></i>';
+              button.onclick = function (e) {
+                e.preventDefault();
+                onActivateSettings(this);
+              }
+              el.appendChild(button);
+            })
+
+            //Append Choice Field Click Listeners
+            container.querySelectorAll('.block_setting_choice, block_content_choice').forEach(function (el) {
+              el.addEventListener('change', function (event) {
+                onSelectChoice(el, event.target.value);
+              })
+            })
+
+            // Hide all Settings on Page Load
+            container.querySelectorAll(".block_setting_field, .block_setting_choice, .block_setting_sub").forEach(function (el) {
+              el.parentElement.style.display = 'none';
+            })
+
+            // Style Sub Fields
+            container.querySelectorAll(".block_setting_sub").forEach(function (el) {
+              el.parentElement.style.width = '60%';
+            })
+
+          })
         }
+      }
     };
-
-    // Create an observer instance linked to the callback function
     const observer = new MutationObserver(callback);
-
-    // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
-
     // Later, you can stop observing
     // observer.disconnect();
 
   });
-})();
-
-
-// Select Value is changed
-(function () {
-  var selector = '.wagtailuiplus__choice-handler';
-
-  document.addEventListener('click', function (e) {
-
-    var el = e.target;
-    var el_parent = el.closest(selector);
-
-    if (!el_parent) {
-      return;
-    }
-
-    el.addEventListener('change', function (el) {
-      var choice_handler_value = el.target.value
-      var parent_block = el_parent.closest('.c-sf-block');
-
-      parent_block.querySelectorAll('.wagtailuiplus__show_if').forEach(function(el){
-        el.parentElement.style.display = 'none';
-      });
-
-      parent_block.querySelectorAll(`.wagtailuiplus__show_if.${choice_handler_value}`).forEach(function(el){
-        el.parentElement.style.display = 'block';
-      });
-    }, { once: true })
-
-  })
 })();

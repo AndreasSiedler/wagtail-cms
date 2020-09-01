@@ -1,7 +1,8 @@
 from django import forms
 from django.utils.encoding import force_text
 from django.utils.text import slugify
-from wagtail.core.blocks import StructBlock, FieldBlock
+from wagtail.core.blocks import StructBlock, FieldBlock, ChoiceBlock
+from wagtail_color_panel.blocks import NativeColorBlock
 
 
 class HashBlock(FieldBlock):
@@ -27,4 +28,39 @@ class HashBlock(FieldBlock):
 class SectionBlock(StructBlock):
     """ A StructBlock, but with a `hash` field that can be used to generate links to sections of page content
     """
-    hash = HashBlock(required=False, max_length=80, label='Hash', help_text="Allow navigation to this section within a page. e.g. 'team' allows navigation to /http://your-site.com/#team")
+    hash = HashBlock(
+        required=False,
+        max_length=80,
+        label='Hash',
+        help_text="Allow navigation to this section within a page. e.g. 'team' allows navigation to /http://your-site.com/#team",
+        classname=(
+            'block_setting_field'
+        ),
+    )
+    background_type = ChoiceBlock(
+        required=True, 
+        choices=[
+            ('transparent', 'Transparent'),
+            ('solid', 'Solid Color'),
+            ('gradient', 'Gradient Color'),
+            ('image', 'Background Image'),
+        ],
+        icon='pick',
+        classname=(
+            'block_setting_choice'
+        )
+    )
+    background_color = NativeColorBlock(
+        default="#000000",
+        classname='block_setting_sub solid gradient',
+    )
+    background_color_2 = NativeColorBlock(
+        default="#000000",
+        classname='block_setting_sub gradient',
+    )
+    # background_color_3 = NativeColorBlock(
+    #     default="#000000",
+    #     classname=(
+    #         'block_settings_field show_if'
+    #     )
+    # )
