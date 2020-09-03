@@ -1,8 +1,8 @@
-{% if self.background_type == "solid" %}
-<div class="pt-24" style="background: {{ self.background_color }};">
-{% elif  self.background_type == "gradient"  %}
-<div class="pt-24" style="background: linear-gradient(90deg, {{ self.background_color }} 0%, {{ self.background_color_2 }} 100%);">
-{% elif  self.background_type == "transparent"  %}
+{% if self.hero_section.background_type == "solid" %}
+<div class="pt-24" style="background: {{ self.hero_section.background_color }};">
+{% elif  self.hero_section.background_type == "gradient"  %}
+<div class="pt-24" style="background: linear-gradient(90deg, {{ self.hero_section.background_color }} 0%, {{ self.hero_section.background_color_2 }} 100%);">
+{% elif  self.hero_section.background_type == "transparent"  %}
 <div class="pt-24" style="background-color: transparent;">
 {% else %}
 <div class="pt-24">
