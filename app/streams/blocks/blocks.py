@@ -4,91 +4,70 @@ from wagtail.embeds.blocks import EmbedBlock
 from .base import SectionBlock
 from .material_icons import IconChoiceBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
-from django.db import models
-from wagtail.snippets.models import register_snippet
+# from section.snippets.snippets import HeroSection
 
 
-class HeroSectionBlock(SectionBlock):
-    layout = ChoiceBlock(
-        required=True,
-        choices=[
-            ('simple_centered', 'Simple centered'),
-            ('image_right', 'Image on right')
-        ],
-        default='simple_centered',
-        classname='block_content_choice',
-    )
-    heading = CharBlock(
-        required=False,
-        max_length=100,
-        label='Hero title',
-        default='We are heroes',
-        classname='block_content_field',
-    )
-    subheading = CharBlock(
-        required=False,
-        max_length=100,
-        label='Hero subtitle',
-        default='What business are you?',
-        help_text="Leave field empty to hide.",
-        classname='block_content_field',
-    )
-    description = TextBlock(
-        required=False,
-        max_length=400,
-        label='Hero description',
-        default='The thing we do is better than any other similar thing and this hero panel will convince you of that, just by having a glorious background image.',
-        help_text="Leave field empty to hide.",
-        classname='block_content_field',
-    )
-    button_text = CharBlock(
-        required=False,
-        max_length=100,
-        label='Hero button text',
-        default='Subscribe',
-        help_text="Leave field empty to hide.",
-        classname='block_content_field',
-    )
-    image = ImageChooserBlock(
-        required=False,
-        label='Hero image',
-        classname='block_content_field',
-    )
+# class HeroSectionBlock(StructBlock):
 
-    class Meta:
-        template = 'sections/hero_default_block.html'
-        icon = 'placeholder'
-        label = 'Hero Section'
+#     hero_section = SnippetChooserBlock(HeroSection)
+
+#     class Meta:
+#         template = 'sections/hero_default_block.html'
+#         icon = 'placeholder'
+#         label = 'Hero Section from snippet'
 
 
-@register_snippet
-class HeroSectionSnippet(models.Model):
-    layout = ChoiceBlock(
-        required=True,
-        choices=[
-            ('simple_centered', 'Simple centered'),
-            ('image_right', 'Image on right')
-        ],
-        default='simple_centered',
-        classname='block_content_choice',
-    )
-    heading = CharBlock(
-        required=False,
-        max_length=100,
-        label='Hero title',
-        default='We are heroes',
-        classname='block_content_field',
-    )
+# class HeroSectionBlock(SectionBlock):
+#     layout = ChoiceBlock(
+#         required=True,
+#         choices=[
+#             ('simple_centered', 'Simple centered'),
+#             ('image_right', 'Image on right')
+#         ],
+#         default='simple_centered',
+#         classname='block_content_choice',
+#     )
+#     heading = CharBlock(
+#         required=False,
+#         max_length=100,
+#         label='Hero title',
+#         default='We are heroes',
+#         classname='block_content_field',
+#     )
+#     subheading = CharBlock(
+#         required=False,
+#         max_length=100,
+#         label='Hero subtitle',
+#         default='What business are you?',
+#         help_text="Leave field empty to hide.",
+#         classname='block_content_field',
+#     )
+#     description = TextBlock(
+#         required=False,
+#         max_length=400,
+#         label='Hero description',
+#         default='The thing we do is better than any other similar thing and this hero panel will convince you of that, just by having a glorious background image.',
+#         help_text="Leave field empty to hide.",
+#         classname='block_content_field',
+#     )
+#     button_text = CharBlock(
+#         required=False,
+#         max_length=100,
+#         label='Hero button text',
+#         default='Subscribe',
+#         help_text="Leave field empty to hide.",
+#         classname='block_content_field',
+#     )
+#     image = ImageChooserBlock(
+#         required=False,
+#         label='Hero image',
+#         classname='block_content_field',
+#     )
 
-
-class HeroSectionBlock2(StructBlock):
-
-    hero_section = SnippetChooserBlock(HeroSectionSnippet)
-
-    class Meta:
-        template = 'sections/hero_default_block.html'
-        icon = 'placeholder'
-        label = 'Hero Section from snippet'
+#     class Meta:
+#         template = 'sections/hero_default_block.html'
+#         icon = 'placeholder'
+#         label = 'Hero Section'
 
 
 class FeatureBlock(StructBlock):
