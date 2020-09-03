@@ -1,32 +1,31 @@
+{% extends "section_base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="pt-24" style="background-color: {{ self.background_color }};">
-
-	<div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-		<!--Left Col-->
-		<div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-			{% if self.subheading %}
-			<p class="uppercase tracking-loose w-full">{{ self.subheading }}</p>
-			{% endif %}
-			<h1 class="my-4 text-5xl font-bold leading-tight">{{ self.heading }}</h1>
-			{% if self.description %}
-			<p class="leading-normal text-2xl mb-8">{{ self.description }}</p>
-			{% endif %}
-			{% if self.button_text %}
-				<button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">{{ self.button_text }}</button>
-			{% endif %}
-		</div>
-		<!--Right Col-->
-		<div class="w-full md:w-3/5 py-6 text-center">
-            {% image self.image width-640 class="max-w-screen-sm m-auto w-full" %}
-		</div>
-		
-	</div>
-
+{% block content %}
+<!--Left Col-->
+<div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+	{% if self.subheading %}
+	<p class="uppercase tracking-loose w-full">{{ self.subheading }}</p>
+	{% endif %}
+	{% if self.heading %}
+	<h1 class="my-4 text-5xl font-bold leading-tight">{{ self.heading }}</h1>
+	{% endif %}
+	{% if self.description %}
+	<p class="leading-normal text-2xl mb-8">{{ self.description }}</p>
+	{% endif %}
+	{% if self.button_text %}
+	<button
+		class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">{{ self.button_text }}</button>
+	{% endif %}
 </div>
+<!--Right Col-->
+<div class="w-full md:w-3/5 py-6 text-center">
+	{% image self.image width-640 class="max-w-screen-sm m-auto w-full" %}
+</div>
+{% endblock %}
 
 
-<div class="relative -mt-12 lg:-mt-24">
+<!-- <div class="relative -mt-12 lg:-mt-24">
 	<svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 	<g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -39,4 +38,4 @@
 	</g>
 	</g>
 	</svg>
-</div>
+</div> -->

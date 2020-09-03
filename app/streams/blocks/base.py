@@ -38,7 +38,7 @@ class SectionBlock(StructBlock):
         ),
     )
     background_type = ChoiceBlock(
-        required=True, 
+        required=False,
         choices=[
             ('transparent', 'Transparent'),
             ('solid', 'Solid Color'),
@@ -46,17 +46,19 @@ class SectionBlock(StructBlock):
             ('image', 'Background Image'),
         ],
         icon='pick',
-        classname=(
-            'block_setting_choice'
-        )
+        help_text='Transparent background will use the background-color "page settings".',
+        classname='block_setting_choice',
     )
     background_color = NativeColorBlock(
         default="#000000",
         classname='block_setting_sub solid gradient',
+        required=False,
+
     )
     background_color_2 = NativeColorBlock(
         default="#000000",
         classname='block_setting_sub gradient',
+        required=False,
     )
     # background_color_3 = NativeColorBlock(
     #     default="#000000",
