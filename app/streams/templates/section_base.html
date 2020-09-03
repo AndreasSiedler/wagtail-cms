@@ -1,0 +1,15 @@
+{% if self.background_type == "solid" %}
+<div class="pt-24" style="background: {{ self.background_color }};">
+{% elif  self.background_type == "gradient"  %}
+<div class="pt-24" style="background: linear-gradient(90deg, {{ self.background_color }} 0%, {{ self.background_color_2 }} 100%);">
+{% elif  self.background_type == "transparent"  %}
+<div class="pt-24" style="background-color: transparent;">
+{% else %}
+<div class="pt-24">
+{% endif %}
+
+    <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    {% block content %}{% endblock %}
+    </div>
+    
+</div>
