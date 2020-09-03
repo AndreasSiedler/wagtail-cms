@@ -7,3 +7,5 @@ django_compressor>=2.4,<2.5
 braintree==3.57.*
 django-flatpickr==1.0.*
 django-crispy-forms==1.9.*
+crispy-tailwind==0.2.*
+wagtail-color-panel==1.1.*
