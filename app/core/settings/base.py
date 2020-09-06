@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'blog',
     'form',
     'streams',
-    # 'hooks',
+    'hooks',
     'theme',
     'section',
 

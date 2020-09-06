@@ -2,7 +2,14 @@
 # from django.utils.html import format_html
 # from django.utils.safestring import mark_safe
 
-# from wagtail.core import hooks
+from wagtail.core import hooks
+
+
+@hooks.register("construct_main_menu")
+def change_snippet_name(request, menu_items):
+    for item in menu_items:
+        if item.__class__.__name__ == "SnippetsMenuItem":
+            item.label = "Sections & Blocks"
 
 # @hooks.register('insert_editor_css')
 # def editor_css():
