@@ -10,9 +10,11 @@ from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 from theme.settings import cr_settings
 
+from .buttons import ButtonAction
+
 
 @register_setting(icon='view')
-class Appearance(BaseSetting):
+class Appearance(BaseSetting, ButtonAction):
 
     # Navbar settings
     navbar_layout_scheme = models.CharField(
@@ -91,6 +93,8 @@ class Appearance(BaseSetting):
 
     # layout tab panels
     layout_tab_panels = [
+        ButtonAction.button_action_panel,
+        ButtonAction.button_action_panel_advanced,
         MultiFieldPanel(
             [
                 FieldPanel('navbar_layout_scheme'),
@@ -140,59 +144,3 @@ class Appearance(BaseSetting):
             ObjectList(branding_tab_panels, heading="Branding"),
         ]
     )
-
-
-
-# body_background_color_type = ChoiceBlock(
-#     required=True, 
-#     choices=[
-#         ('solid', 'Solid'),
-#         ('linear_gradient', 'Linear Gradient')
-#     ],
-#     default='solid',
-#     classname=(
-#         'wagtailuiplus__choice-handler'
-#     ))
-
-# Create your models here.
-# @register_setting
-# class SocialMedia(BaseSetting):
-#     """" Social media settings for our custom webite """
-
-#     facebook = models.URLField(blank=True, null=True, help_text="Facebook Url")
-#     twitter = models.URLField(blank=True, null=True, help_text="Twitter Url")
-#     youtube = models.URLField(blank=True, null=True, help_text="Youtube Url")
-
-#     header_logo = models.ForeignKey(
-#         'wagtailimages.Image',
-#         null=True,
-#         blank=True,
-#         on_delete=models.SET_NULL,
-#         related_name='+'
-#     )
-#     header_background_color = ColorField(blank=True, null=True, help_text="Choose background color")
-
-#     header_panels = [
-#         MultiFieldPanel(
-#             [
-#                 ImageChooserPanel('header_logo'),
-#                 NativeColorPanel('header_background_color'),
-#             ]
-#         )
-#     ]
-
-#     socia_media_panels = [
-#         MultiFieldPanel([
-#             FieldPanel("facebook"),
-#             FieldPanel("twitter"),
-#             FieldPanel("youtube"),
-#         ])
-#     ]
-
-#     edit_handler = TabbedInterface(
-#         [
-#             ObjectList(socia_media_panels, heading="Social"),
-#             ObjectList(header_panels, heading="Header"),
-#         ]
-#     )
-
