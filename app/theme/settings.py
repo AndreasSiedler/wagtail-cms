@@ -42,18 +42,21 @@ DEFAULTS = {
         ('font-black', 'Black'),
     ),
 
-    'BUTTON_PADDING_COICES_DEFAULT': 'px-2 py-2',
+    'BUTTON_COLOR_TYPE_CHOICES_DEFAULT': 'primary',
+    'BUTTON_COLOR_TYPE_CHOICES': (
+        ('primary', 'Primary Color'),
+        ('secondary', 'Secondary Color'),
+        ('custom', 'Custom Color'),
+    ),
+    
     'BUTTON_PADDING_COICES': (
-        ('px-2 py-2', 'Default'),
         ('px-1 py-1', 'Small'),
         ('px-4 py-4', 'Medium'),
         ('px-8 py-8', 'Large'),
         ('px-12 py-12', 'X-Large'),
     ),
     
-    'BUTTON_BORDER_RADIUS_COICES_DEFAULT': 'rounded',
     'BUTTON_BORDER_RADIUS_COICES': (
-        ('rounded', 'Default'),
         ('rounded-none', 'None'),
         ('rounded-sm', 'Small'),
         ('rounded-md', 'Medium'),

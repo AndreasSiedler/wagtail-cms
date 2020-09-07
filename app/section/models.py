@@ -17,13 +17,14 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from wagtail.core.blocks import StructBlock
+from theme.models.buttons import ButtonAction
 
 
 logger = logging.getLogger(__name__)
 
 
 class MyMixin(object):
-    
+
     def __init__(self, new_arg=None, *args, **kwargs):
         self.new_arg = new_arg
         super(MyMixin, self).__init__(*args, **kwargs)
@@ -122,7 +123,7 @@ class SectionBase(models.Model):
 
 
 @register_snippet
-class HeroSection(SectionBase):
+class HeroSection(SectionBase, ButtonAction):
     hero_subheading = models.CharField(
         blank=True,
         max_length=100,
@@ -179,6 +180,7 @@ class HeroSection(SectionBase):
 
     # layout tab panels
     content_tab_panels = [
+        ButtonAction.button_action_panel,
         FieldPanel('section_name', heading='Name', classname='full title'),
         MultiFieldPanel(
             [

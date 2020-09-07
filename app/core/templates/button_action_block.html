@@ -1,8 +1,13 @@
 {% load wagtailcore_tags %}
 
-{% with theme=settings.theme.Appearance %}
+{% with global=settings.theme.Appearance section=self.section %}
 
-<button style="background-color: {{ theme.button_action_bg_color }};"
-    class="{{ theme.button_action_padding }} {{ theme.button_action_border_radius }}">{{ self.section.hero_first_button_text }}</button>
+<button 
+    style="background-color: {{ global.button_action_bg_color }};" 
+    class="{% spaceless %}
+    {% endspaceless %}{% firstof section.button_action_padding global.button_action_padding "py-5 px-10" %} {% spaceless %}
+    {% endspaceless %}{% firstof section.button_action_border_radius global.button_action_border_radius "rounded" %}">
+    {{ section.hero_first_button_text }}
+</button>
 
 {% endwith %}

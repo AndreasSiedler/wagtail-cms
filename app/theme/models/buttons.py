@@ -9,6 +9,14 @@ from theme.settings import cr_settings
 
 class ButtonAction(models.Model):
 
+    button_action_bg_color_type = models.CharField(
+        null=True,
+        max_length=50,
+        choices=cr_settings['BUTTON_COLOR_TYPE_CHOICES'],
+        default=cr_settings['BUTTON_COLOR_TYPE_CHOICES_DEFAULT'],
+        verbose_name='Color Type',
+        help_text='Choose color type.',
+    )
     button_action_bg_color = ColorField(
         blank=True,
         null=True,
@@ -42,18 +50,20 @@ class ButtonAction(models.Model):
         help_text='Choose font weight.',
     )
     button_action_padding = models.CharField(
+        blank=True,
         null=True,
         max_length=50,
         choices=cr_settings['BUTTON_PADDING_COICES'],
-        default=cr_settings['BUTTON_PADDING_COICES_DEFAULT'],
+        # default=cr_settings['BUTTON_PADDING_COICES_DEFAULT'],
         verbose_name='Size',
         help_text='Choose button size.',
     )
     button_action_border_radius = models.CharField(
+        blank=True,
         null=True,
         max_length=50,
         choices=cr_settings['BUTTON_BORDER_RADIUS_COICES'],
-        default=cr_settings['BUTTON_BORDER_RADIUS_COICES_DEFAULT'],
+        # default=cr_settings['BUTTON_BORDER_RADIUS_COICES_DEFAULT'],
         verbose_name='Edges',
         help_text='Choose button edges.',
     )
@@ -71,6 +81,7 @@ class ButtonAction(models.Model):
     )
     button_action_panel_advanced = MultiFieldPanel(
         [
+            FieldPanel('button_action_bg_color_type'),
             NativeColorPanel('button_action_bg_color'),
             NativeColorPanel('button_action_bg_color_hover'),
             NativeColorPanel('button_action_text_color'),
