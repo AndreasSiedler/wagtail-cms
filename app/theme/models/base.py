@@ -13,8 +13,38 @@ from theme.settings import cr_settings
 from .buttons import ButtonAction
 
 
+class Colors(models.Model):
+
+    color_primary = ColorField(
+        blank=True,
+        null=True,
+        help_text="Choose primary color.",
+        verbose_name="Primary Color",
+    )
+    color_secondary = ColorField(
+        blank=True,
+        null=True,
+        help_text="Choose secondary color.",
+        verbose_name="Secondary Color",
+    )
+    
+    # Panels
+    color_panel = MultiFieldPanel(
+        [
+            NativeColorPanel('color_primary'),
+            NativeColorPanel('color_secondary'),
+        ],
+        heading='Colors',
+        classname='collapsible',
+        help_text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    )
+
+    class Meta:
+        abstract = True
+
+
 @register_setting(icon='view')
-class Appearance(BaseSetting, ButtonAction):
+class Appearance(BaseSetting, ButtonAction, Colors):
 
     # Navbar settings
     navbar_layout_scheme = models.CharField(
@@ -93,6 +123,7 @@ class Appearance(BaseSetting, ButtonAction):
 
     # layout tab panels
     layout_tab_panels = [
+        Colors.color_panel,
         ButtonAction.button_action_panel,
         ButtonAction.button_action_panel_advanced,
         MultiFieldPanel(
