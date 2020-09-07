@@ -11,10 +11,10 @@ from wagtail_color_panel.edit_handlers import NativeColorPanel
 from theme.settings import cr_settings
 
 from .buttons import ButtonAction
-
+from .branding import Colors
 
 @register_setting(icon='view')
-class Appearance(BaseSetting, ButtonAction):
+class Appearance(BaseSetting, ButtonAction, Colors):
 
     # Navbar settings
     navbar_layout_scheme = models.CharField(
@@ -93,6 +93,7 @@ class Appearance(BaseSetting, ButtonAction):
 
     # layout tab panels
     layout_tab_panels = [
+        Colors.color_panel,
         ButtonAction.button_action_panel,
         ButtonAction.button_action_panel_advanced,
         MultiFieldPanel(

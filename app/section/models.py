@@ -180,8 +180,9 @@ class HeroSection(SectionBase, ButtonAction):
 
     # layout tab panels
     content_tab_panels = [
-        ButtonAction.button_action_panel,
         FieldPanel('section_name', heading='Name', classname='full title'),
+        ButtonAction.button_action_panel,
+        ButtonAction.button_action_panel_advanced,
         MultiFieldPanel(
             [
                 FieldPanel('hero_layout'),

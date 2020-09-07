@@ -10,6 +10,7 @@ from theme.settings import cr_settings
 class ButtonAction(models.Model):
 
     button_action_bg_color_type = models.CharField(
+        blank=True,
         null=True,
         max_length=50,
         choices=cr_settings['BUTTON_COLOR_TYPE_CHOICES'],
