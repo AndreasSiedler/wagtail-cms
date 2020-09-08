@@ -34,10 +34,13 @@ class SectionPage(MetadataPageMixin, Page):
     ], blank=True, help_text='Add sections to the page')
     """
 
-    body = StreamField([
-        ('test', HeroSectionBlock()),
-    ], blank=True, help_text='')
-
+    body = StreamField(
+        [
+            ('test', HeroSectionBlock()),
+        ],
+        blank=True,
+        help_text=''
+    )
     content_panels = Page.content_panels + [
         StreamFieldPanel('body', heading='Page sections'),
     ]

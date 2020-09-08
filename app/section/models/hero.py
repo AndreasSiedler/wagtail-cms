@@ -77,7 +77,7 @@ class HeroSection(SectionBase, ButtonAction):
     edit_handler = TabbedInterface(
         [
             ObjectList(content_tab_panels, heading="Content"),
-            ObjectList(SectionBase.design_tab_panels, heading="Design"),
+            ObjectList(SectionBase.advanced_tab_panels, heading="Advanced"),
         ]
     )
 

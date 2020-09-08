@@ -19,7 +19,6 @@
         {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'vendors/tailwind.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'fonts/sourcs-sans-pro.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -62,7 +61,10 @@
 
         {# Global javascript #}
         {% compress js  %}
-        <script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+        <!-- <script type="text/javascript" src="{% static 'js/core.js' %}"></script> -->
+        <script>
+            console.log("JUHU")
+        </script>
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}

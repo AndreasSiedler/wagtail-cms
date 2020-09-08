@@ -100,7 +100,7 @@ class FeatureBlock(StructBlock):
 
     class Meta:
         icon = 'tick-inverse'
-        label = 'Product Feature Description'
+        label = 'Add Feature'
 
 
 class FeatureSectionBlock(SectionBlock):
