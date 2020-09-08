@@ -7,7 +7,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from wagtail.core.blocks import StructBlock
-from theme.models.buttons import ButtonAction
+from components.models import ButtonAction
 from .base import SectionBase
 
 

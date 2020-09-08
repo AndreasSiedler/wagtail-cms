@@ -4,7 +4,7 @@ from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
 from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 
-from theme.settings import cr_settings
+from components.settings import cr_settings
 
 
 class ButtonAction(models.Model):

@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'hooks',
     'theme',
     'section',
+    'components',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

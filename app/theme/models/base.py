@@ -10,7 +10,7 @@ from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 from theme.settings import cr_settings
 
-from .buttons import ButtonAction
+from components.models import ButtonAction
 
 
 class Colors(models.Model):
