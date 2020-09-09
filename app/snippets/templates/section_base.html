@@ -1,5 +1,5 @@
 {% load wagtailcore_tags wagtailimages_tags %}
-{% image self.section.section_background_image width-1920 as section_bg_image %}
+{% image self.section.section_background_image width-1920 format-jpeg jpegquality-40 as section_bg_image %}
 
 <div 
     style="{% spaceless %}

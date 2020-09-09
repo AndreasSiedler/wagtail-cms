@@ -69,7 +69,7 @@ class SectionBase(models.Model):
     )
 
     # Panels
-    design_tab_panels = [
+    advanced_tab_panels = [
         MultiFieldPanel(
             [
                 FieldPanel('section_background_type'),

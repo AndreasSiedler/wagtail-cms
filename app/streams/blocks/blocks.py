@@ -1,73 +1,6 @@
-from wagtail.core.blocks import StructBlock, ListBlock, CharBlock, TextBlock, URLBlock, ChoiceBlock, StreamBlock
+from wagtail.core.blocks import StructBlock, CharBlock, TextBlock, URLBlock, ChoiceBlock
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.embeds.blocks import EmbedBlock
-from .base import SectionBlock
 from .material_icons import IconChoiceBlock
-from wagtail.snippets.blocks import SnippetChooserBlock
-# from section.snippets.snippets import HeroSection
-
-
-# class HeroSectionBlock(StructBlock):
-
-#     hero_section = SnippetChooserBlock(HeroSection)
-
-#     class Meta:
-#         template = 'sections/hero_default_block.html'
-#         icon = 'placeholder'
-#         label = 'Hero Section from snippet'
-
-
-# class HeroSectionBlock(SectionBlock):
-#     layout = ChoiceBlock(
-#         required=True,
-#         choices=[
-#             ('simple_centered', 'Simple centered'),
-#             ('image_right', 'Image on right')
-#         ],
-#         default='simple_centered',
-#         classname='block_content_choice',
-#     )
-#     heading = CharBlock(
-#         required=False,
-#         max_length=100,
-#         label='Hero title',
-#         default='We are heroes',
-#         classname='block_content_field',
-#     )
-#     subheading = CharBlock(
-#         required=False,
-#         max_length=100,
-#         label='Hero subtitle',
-#         default='What business are you?',
-#         help_text="Leave field empty to hide.",
-#         classname='block_content_field',
-#     )
-#     description = TextBlock(
-#         required=False,
-#         max_length=400,
-#         label='Hero description',
-#         default='The thing we do is better than any other similar thing and this hero panel will convince you of that, just by having a glorious background image.',
-#         help_text="Leave field empty to hide.",
-#         classname='block_content_field',
-#     )
-#     button_text = CharBlock(
-#         required=False,
-#         max_length=100,
-#         label='Hero button text',
-#         default='Subscribe',
-#         help_text="Leave field empty to hide.",
-#         classname='block_content_field',
-#     )
-#     image = ImageChooserBlock(
-#         required=False,
-#         label='Hero image',
-#         classname='block_content_field',
-#     )
-
-#     class Meta:
-#         template = 'sections/hero_default_block.html'
-#         icon = 'placeholder'
-#         label = 'Hero Section'
 
 
 class FeatureBlock(StructBlock):
@@ -100,49 +33,7 @@ class FeatureBlock(StructBlock):
 
     class Meta:
         icon = 'tick-inverse'
-        label = 'Product Feature Description'
-
-
-class FeatureSectionBlock(SectionBlock):
-    heading = CharBlock(
-        required=False,
-        max_length=100,
-        label='Heading',
-        default='Our awesome features!',
-        help_text='Add a heading at the beginning of this page section',
-        classname='block_content_field'
-    )
-    subheading = CharBlock(
-        required=False,
-        max_length=100,
-        label='Subheading',
-        default='Here we describe why our features are super awesome!',
-        help_text="Leave field empty to hide.",
-        classname='block_content_field',
-    )
-    description = TextBlock(
-        required=False, 
-        max_length=400, 
-        label='Description',
-        help_text='This is the paragraph where you can write more details about your product. Keep it meaningful!', 
-        classname='block_content_field',
-    )
-    image = ImageChooserBlock(
-        required=False,
-        label='Image',
-        help_text='Pick an image (e.g. of the product) for the side panel of a feature list', 
-        classname='block_content_field',
-    )
-    features = ListBlock(
-        FeatureBlock(), 
-        label='Features',
-        classname='block_content_field',
-    )
-
-    class Meta:
-        template = 'sections/features_default_block.html'
-        icon = 'list-ul'
-        label = 'Feature Section'
+        label = 'Add Feature'
 
 
 class TeamMemberBlock(StructBlock):
@@ -158,22 +49,6 @@ class TeamMemberBlock(StructBlock):
         label = 'Team Member'
 
 
-class TeamSectionBlock(SectionBlock):
-    heading = CharBlock(required=False, max_length=100,
-                        label='Heading', default='Our illustrious leaders'),
-    description = TextBlock(
-        required=False,
-        max_length=100,
-        label='Description',
-        default='Here is a list of our Head Peeps. They look glorious rendered in HTML but are probably just normal, mortal humans.'
-    )
-    members = ListBlock(TeamMemberBlock(), label='Team Members')
-
-    class Meta:
-        icon = 'group'
-        label = 'Team Section'
-
-
 class CarouselImageBlock(StructBlock):
     image = ImageChooserBlock()
     heading = CharBlock(required=False, max_length=80,
@@ -185,18 +60,6 @@ class CarouselImageBlock(StructBlock):
     class Meta:
         icon = 'image'
         label = 'Carousel Image'
-
-
-class CarouselSectionBlock(SectionBlock):
-    heading = CharBlock(required=False, max_length=100, label='Heading',
-                        help_text='Add a heading at the beginning of this page section'),
-    description = TextBlock(required=False, max_length=100, label='Description',
-                            help_text='Provide a slightly more detailed description of what this carousel section is for')
-    images = ListBlock(CarouselImageBlock(), label='Images')
-
-    class Meta:
-        icon = 'image'
-        label = 'Carousel Section'
 
 
 class FaqBlock(StructBlock):
@@ -212,18 +75,6 @@ class FaqBlock(StructBlock):
     class Meta:
         icon = 'help'
         label = 'FAQ'
-
-
-class FaqSectionBlock(SectionBlock):
-    heading = CharBlock(required=False, max_length=100, label='Heading',
-                        help_text='Add a heading at the beginning of this page section'),
-    description = TextBlock(
-        required=False, max_length=400, label='Description')
-    faqs = ListBlock(FaqBlock(), label='FAQs')
-
-    class Meta:
-        icon = 'help'
-        label = 'FAQs Section'
 
 
 class TestimonialBlock(StructBlock):
@@ -252,18 +103,6 @@ class TestimonialBlock(StructBlock):
         label = 'Testimonial'
 
 
-class TestimonialSectionBlock(SectionBlock):
-    heading = CharBlock(required=False, max_length=100, label='Heading', default='Testimonials',
-                        help_text='Add a heading at the beginning of this page section'),
-    description = TextBlock(required=False, max_length=400, label='Description',
-                            default='Our users love us. Look at these rave reviews...')
-    testimonials = ListBlock(TestimonialBlock(), label='Testimonials')
-
-    class Meta:
-        icon = 'pick'
-        label = 'Testimonials Section'
-
-
 class ProductBlock(StructBlock):
     heading = CharBlock(required=True, max_length=80, label='Name',
                         help_text="Name of a product. Keep it short, like 'Mega Kit Pro' or 'Cloud Manager'")
@@ -277,46 +116,3 @@ class ProductBlock(StructBlock):
     class Meta:
         icon = 'tick-inverse'
         label = 'Product Overview'
-
-
-class ProductSectionBlock(SectionBlock):
-    heading = CharBlock(required=False, max_length=100, label='Heading', default='Some of our awesome products',
-                        help_text='Add a heading at the beginning of this page section'),
-    description = TextBlock(required=False, max_length=400, label='Description',
-                            help_text='This is the paragraph where you can write more details about your product. Keep it meaningful!')
-    features = ListBlock(FeatureBlock(), label='Features')
-
-    class Meta:
-        icon = 'list-ul'
-        label = 'Products Overview Section'
-
-
-class CustomSectionBlock(SectionBlock):
-
-    content = StreamBlock([
-        ('button', StructBlock([
-            ('text', CharBlock(required=False, max_length=80, label='Label')),
-            ('url', URLBlock(required=False, label='URL')),
-        ], required=False, label='Call to action', help_text='A "call-to-action" button, like "Sign Up Now!"')),
-        ('video', EmbedBlock(required=False, label='Video')),
-        ('quote', StructBlock([
-            ('text', TextBlock()),
-            ('author', CharBlock(required=False)),
-        ], required=False, label='Quote', help_text='An inspiring quotation, optionally attributed to someone'))
-    ], required=False, block_counts={'button': {'max_num': 1}, 'video': {'max_num': 1}, 'quote': {'max_num': 1}})
-
-    class Meta:
-        icon = 'placeholder'
-        label = 'Custom Section'
-
-    # content = StreamBlock([
-    #     ('button', StructBlock([
-    #         ('text', CharBlock(required=False, max_length=80, label='Label')),
-    #         ('url', URLBlock(required=False, label='URL')),
-    #     ], required=False, label='Call to action', help_text='A "call-to-action" button, like "Sign Up Now!"')),
-    #     ('video', EmbedBlock(required=False, label='Video')),
-    #     ('quote', StructBlock([
-    #         ('text', TextBlock()),
-    #         ('author', CharBlock(required=False)),
-    #     ], required=False, label='Quote', help_text='An inspiring quotation, optionally attributed to someone'))
-    # ], required=False, block_counts={'button': {'max_num': 1}, 'video': {'max_num': 1}, 'quote': {'max_num': 1}})
