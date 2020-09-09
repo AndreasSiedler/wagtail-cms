@@ -7,7 +7,6 @@ from .blocks import (
     FaqBlock,
     TestimonialBlock,
     IconChoiceBlock,
-    HeroSectionChooserBlock,
 )  # noqa
 # noqa avoids "unused imports in __init__.py" error when using flake8
 

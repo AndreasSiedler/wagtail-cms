@@ -1,8 +1,6 @@
 from wagtail.core.blocks import StructBlock, CharBlock, TextBlock, URLBlock, ChoiceBlock
 from wagtail.images.blocks import ImageChooserBlock
 from .material_icons import IconChoiceBlock
-from wagtail.snippets.blocks import SnippetChooserBlock
-from snippets.sections.hero import HeroSection
 
 
 class FeatureBlock(StructBlock):
@@ -36,15 +34,6 @@ class FeatureBlock(StructBlock):
     class Meta:
         icon = 'tick-inverse'
         label = 'Add Feature'
-
-
-class HeroSectionChooserBlock(StructBlock):
-    section = SnippetChooserBlock(HeroSection)
-
-    class Meta:
-        template = 'hero_section_block.html'
-        icon = 'placeholder'
-        label = 'Hero Section from snippet'
 
 
 class TeamMemberBlock(StructBlock):

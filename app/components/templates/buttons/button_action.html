@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 
-{% with global=settings.theme.Appearance section=self.section %}
+{% with global=settings.theme.Appearance section=self %}
 <button 
     style="background-color: {% spaceless %}
     {% endspaceless %}{% if section.button_action_bg_color_type == "primary" %}{{ global.color_primary }}{% spaceless %}

@@ -7,7 +7,7 @@ from wagtail.core.fields import StreamField
 from .base import SectionBase
 
 from section.settings import cr_settings
-# from streams.blocks.blocks import FeatureBlock
+from streams.blocks import FeatureBlock
 
 
 @register_snippet
@@ -31,7 +31,7 @@ class FeatureSection(SectionBase):
     )
     feature_items = StreamField(
         [
-            # ('feature_block', FeatureBlock())
+            ('feature_block', FeatureBlock())
         ],
         null=True,
         verbose_name="Features",
