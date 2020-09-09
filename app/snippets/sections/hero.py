@@ -3,10 +3,7 @@ from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
-from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
-
-from wagtail.core.blocks import StructBlock
 from components.models import ButtonAction
 from .base import SectionBase
 
@@ -80,13 +77,3 @@ class HeroSection(SectionBase, ButtonAction):
             ObjectList(SectionBase.advanced_tab_panels, heading="Advanced"),
         ]
     )
-
-
-class HeroSectionBlock(StructBlock):
-
-    section = SnippetChooserBlock(HeroSection)
-
-    class Meta:
-        template = 'hero_section_block.html'
-        icon = 'placeholder'
-        label = 'Hero Section from snippet'

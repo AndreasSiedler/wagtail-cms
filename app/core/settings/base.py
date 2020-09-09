@@ -28,11 +28,14 @@ INSTALLED_APPS = [
     'search',
     'blog',
     'form',
+    'section',
+    
+    'components',
+    'snippets',
     'streams',
     'hooks',
+
     'theme',
-    'section',
-    'components',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

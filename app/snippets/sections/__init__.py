@@ -1,4 +1,4 @@
-from .page import SectionPage
+from .base import SectionBase
 from .hero import HeroSection
 from .feature import FeatureSection
 

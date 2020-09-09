@@ -3,15 +3,12 @@ from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, StreamFieldPanel
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
-from wagtail.snippets.blocks import SnippetChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
-
 from wagtail.core.fields import StreamField
-from wagtail.core.blocks import StructBlock, ListBlock
 from .base import SectionBase
 
 from section.settings import cr_settings
-from streams.blocks import FeatureBlock
+# from streams.blocks.blocks import FeatureBlock
+
 
 @register_snippet
 class FeatureSection(SectionBase):
@@ -34,7 +31,7 @@ class FeatureSection(SectionBase):
     )
     feature_items = StreamField(
         [
-            ('feature_block', FeatureBlock())
+            # ('feature_block', FeatureBlock())
         ],
         null=True,
         verbose_name="Features",

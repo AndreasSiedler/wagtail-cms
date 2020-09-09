@@ -1,19 +1,13 @@
-from .base import HashBlock, SectionBlock  # noqa
+from .base import HashBlock  # noqa
 from .blocks import (
     FeatureBlock,
-    FeatureSectionBlock,
     ProductBlock,
-    ProductSectionBlock,
     TeamMemberBlock,
-    TeamSectionBlock,
     CarouselImageBlock,
-    CarouselSectionBlock,
-    CustomSectionBlock,
     FaqBlock,
-    FaqSectionBlock,
     TestimonialBlock,
-    TestimonialSectionBlock,
-    IconChoiceBlock
+    IconChoiceBlock,
+    HeroSectionChooserBlock,
 )  # noqa
 # noqa avoids "unused imports in __init__.py" error when using flake8
 
@@ -26,15 +20,4 @@ blocks = [
     ('faq_block', FaqBlock()),
     ('testimonial_block', TestimonialBlock()),
     ('icon_choice_block', IconChoiceBlock()),
-]
-section_blocks = [
-    # ('hero_section', HeroSectionBlock()),
-    ('feature_section', FeatureSectionBlock()),
-    ('carousel_section', CarouselSectionBlock()),
-    ('feature_block', FeatureSectionBlock()),
-    ('faq_section', FaqSectionBlock()),
-    ('product_section', ProductSectionBlock()),
-    ('team_section', TeamSectionBlock()),
-    ('testimonial_section', TestimonialSectionBlock()),
-    ('custom_section', CustomSectionBlock()),
 ]
