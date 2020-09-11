@@ -1,5 +1,7 @@
 from .base import HashBlock  # noqa
 from .blocks import (
+    ActionButton,
+    PrimaryButton,
     FeatureBlock,
     ProductBlock,
     TeamMemberBlock,

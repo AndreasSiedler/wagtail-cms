@@ -26,7 +26,7 @@ class FeatureSection(SectionBase):
         max_length=50,
         choices=cr_settings['FEATURE_COLUMN_COUNT_CHOICES'],
         default=cr_settings['FEATURE_COLUMN_COUNT_CHOICES_DEFAULT'],
-        verbose_name='Number of columns',
+        verbose_name='Columns',
         # help_text='Choose font weight.',
     )
     feature_items = StreamField(
@@ -39,22 +39,13 @@ class FeatureSection(SectionBase):
     )
 
     # layout tab panels
-    content_tab_panels = [
-        FieldPanel('section_name', heading='Name', classname='full title'),
+    basic_tab_panels = SectionBase.basic_tab_panels + [
         MultiFieldPanel(
             [
                 FieldPanel('feature_layout'),
                 FieldPanel('feautre_column_count'),
             ],
             heading='Layout',
-            # classname='collapsible',
-            help_text="Please choose a feature layout!"
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('feature_layout'),
-            ],
-            heading='Design',
             # classname='collapsible',
             help_text="Please choose a feature layout!"
         ),
@@ -71,7 +62,7 @@ class FeatureSection(SectionBase):
     # Register Tabs
     edit_handler = TabbedInterface(
         [
-            ObjectList(content_tab_panels, heading="Basic"),
+            ObjectList(basic_tab_panels, heading="Basic"),
             ObjectList(SectionBase.advanced_tab_panels, heading="Advanced"),
         ]
     )

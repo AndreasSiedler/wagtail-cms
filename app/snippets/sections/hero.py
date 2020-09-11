@@ -1,12 +1,13 @@
 from django.db import models
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, StreamFieldPanel
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
 from wagtail.images.edit_handlers import ImageChooserPanel
 from components.models import ButtonAction
 from .base import SectionBase
-
+from wagtail.core.fields import StreamField
+from streams.blocks import ActionButton, PrimaryButton
 
 @register_snippet
 class HeroSection(SectionBase, ButtonAction):
@@ -43,6 +44,15 @@ class HeroSection(SectionBase, ButtonAction):
         verbose_name='Image',
         related_name='+',
     )
+    hero_buttons = StreamField(
+        [
+            ('action_button', ActionButton()),
+            ('primary_button', PrimaryButton())
+        ],
+        null=True,
+        verbose_name="Buttons",
+        help_text="Please choose Buttons"
+    )
 
     # layout tab panels
     content_tab_panels = [
@@ -66,6 +76,7 @@ class HeroSection(SectionBase, ButtonAction):
             heading='Content',
             classname='collapsible',
         ),
+        StreamFieldPanel('hero_buttons'),
         ButtonAction.button_action_panel,
         ButtonAction.button_action_panel_advanced,
     ]

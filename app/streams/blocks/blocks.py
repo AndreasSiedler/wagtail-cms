@@ -3,6 +3,33 @@ from wagtail.images.blocks import ImageChooserBlock
 from .material_icons import IconChoiceBlock
 
 
+class ActionButton(StructBlock):
+    text = CharBlock(
+        required=True,
+        max_length=50,
+        label='Text',
+        # help_text=""
+    )
+
+
+class PrimaryButton(StructBlock):
+    text = CharBlock(
+        required=True,
+        max_length=50,
+        label='Text',
+        # help_text=""
+    )
+
+
+class CustomButton(StructBlock):
+    text = CharBlock(
+        required=True,
+        max_length=50,
+        label='Text',
+        # help_text=""
+    )
+
+
 class FeatureBlock(StructBlock):
     heading = CharBlock(
         required=True,

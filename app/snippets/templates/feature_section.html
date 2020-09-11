@@ -1,55 +1,70 @@
-	<!-- Features section -->
-	<section class="features-section spad">
-		<div class="container mx-auto">
-			<div class="section-title">
-				<img src="./img/section-title-icon.png" alt="#">
-				<p>The best out there</p>
-				<h2>See our features</h2>
+{% extends "section_base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<!-- Features section -->
+<section class="features-section pt-32 pb-32">
+	<div class="container mx-auto">
+
+		<!-- Section Header -->
+		<div class="flex flex-col w-full justify-center text-center">
+			{% if self.section_subheading %}
+			<p class="uppercase tracking-loose w-full">{{ self.section_subheading }}</p>
+			{% endif %}
+			{% if self.section_heading %}
+			<h1 class="my-4 text-5xl font-bold leading-tight">{{ self.section_heading }}</h1>
+			{% endif %}
+			{% if self.section_description %}
+			<p class="leading-normal text-2xl mb-8">{{ self.section_description }}</p>
+			{% endif %}
+		</div>
+		
+		<!-- Section Body -->
+		<div class="flex flex-wrap">
+			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 text-center mb-16">
+				<div class="inline-flex w-24 h-24 bg-red-600 text-white items-center justify-center mb-10 text-4xl rounded-full">
+					<i class="scale-75 flaticon-domain-registration"></i>
+				</div>
+				<h4>Buy your Domain</h4>
+				<p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
 			</div>
-			<div class="flex flex-wrap">
-				<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-					<div class="ft-icon">
-						<i class="flaticon-domain-registration"></i>
-					</div>
-					<h4>Buy your Domain</h4>
-					<p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
+			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item fi-center-top">
+				<div class="ft-icon">
+					<i class="flaticon-server"></i>
 				</div>
-				<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item fi-center-top">
-					<div class="ft-icon">
-						<i class="flaticon-server"></i>
-					</div>
-					<h4>Cloud Database</h4>
-					<p>Ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. </p>
+				<h4>Cloud Database</h4>
+				<p>Ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. </p>
+			</div>
+			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
+				<div class="ft-icon">
+					<i class="flaticon-devices"></i>
 				</div>
-				<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-					<div class="ft-icon">
-						<i class="flaticon-devices"></i>
-					</div>
-					<h4>SSD-Only</h4>
-					<p>Suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis. </p>
+				<h4>SSD-Only</h4>
+				<p>Suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis. </p>
+			</div>
+			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
+				<div class="ft-icon">
+					<i class="flaticon-smartphone"></i>
 				</div>
-				<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-					<div class="ft-icon">
-						<i class="flaticon-smartphone"></i>
-					</div>
-					<h4>Smart Contacts</h4>
-					<p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
+				<h4>Smart Contacts</h4>
+				<p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
+			</div>
+			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
+				<div class="ft-icon">
+					<i class="flaticon-folder"></i>
 				</div>
-				<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-					<div class="ft-icon">
-						<i class="flaticon-folder"></i>
-					</div>
-					<h4>Free Support</h4>
-					<p>Ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. </p>
+				<h4>Free Support</h4>
+				<p>Ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. </p>
+			</div>
+			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
+				<div class="ft-icon">
+					<i class="flaticon-viral-marketing"></i>
 				</div>
-				<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-					<div class="ft-icon">
-						<i class="flaticon-viral-marketing"></i>
-					</div>
-					<h4>Viral Marketing</h4>
-					<p>Suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis. </p>
-				</div>
+				<h4>Viral Marketing</h4>
+				<p>Suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis. </p>
 			</div>
 		</div>
-	</section>
-	<!-- Features section end -->
+	</div>
+</section>
+<!-- Features section end -->
+{% endblock %}

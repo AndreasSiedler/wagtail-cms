@@ -68,7 +68,14 @@ class SectionBase(models.Model):
         related_name='+',
     )
 
-    # Panels
+    # Basic Tab Panels
+    basic_tab_panels = [
+        FieldPanel('section_name', heading='Name', classname='full title'),
+        FieldPanel('section_heading', heading='Heading'),
+        FieldPanel('section_subheading', heading='Subheading'),
+        FieldPanel('section_description', heading='Description'),
+    ]
+    # Advanced Tab Panels
     advanced_tab_panels = [
         MultiFieldPanel(
             [
