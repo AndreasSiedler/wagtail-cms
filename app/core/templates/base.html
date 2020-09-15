@@ -30,13 +30,17 @@
         {% wagtailuserbar %}
 
         <!--Nav-->
-        <nav id="header" class="w-full z-30 top-0 text-white" style="background-color:{{ settings.custom.SocialMediaSettings.header_background_color }}">
+        <nav 
+            id="header" 
+            class="w-full bg-transparent fixed top-0 left-0 z-50 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-6 xl:py-8" 
+            style="background-color:{{ settings.custom.SocialMediaSettings.header_background_color }}"
+            >
 
             <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
                     
                 <div class="pl-4 flex items-center">
                     <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/"> 
-                        {% image settings.custom.SocialMediaSettings.header_logo fill-320x240 class="h-12 w-auto"%}
+                        {% image settings.theme.Appearance.header_logo fill-320x240 class="h-12 w-auto"%}
                     </a>
                 </div>
 
@@ -51,8 +55,6 @@
                     <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Action</button>
                 </div>
             </div>
-            
-            <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
         </nav>
 
 
@@ -63,7 +65,25 @@
         {% compress js  %}
         <!-- <script type="text/javascript" src="{% static 'js/core.js' %}"></script> -->
         <script>
-            console.log("JUHU")
+
+            (function() {
+                var navigation = document.getElementById("header");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 20) {
+                        navigation.classList.add('bg-white', 'xl:py-4', 'shadow-md');
+                        navigation.classList.remove('xl:py-8');
+                    } else {
+                        navigation.classList.remove('bg-white', 'xl:py-4', 'shadow-md');
+                        navigation.classList.add('xl:py-8');
+                    }
+                }
+            })()
+
+
         </script>
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

@@ -59,6 +59,7 @@ class FeatureBlock(StructBlock):
     )
 
     class Meta:
+        template = 'blocks/feature_item_block.html'
         icon = 'tick-inverse'
         label = 'Add Feature'
 

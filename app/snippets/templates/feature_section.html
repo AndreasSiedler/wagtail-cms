@@ -21,48 +21,9 @@
 		
 		<!-- Section Body -->
 		<div class="flex flex-wrap">
-			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 text-center mb-16">
-				<div class="inline-flex w-24 h-24 bg-red-600 text-white items-center justify-center mb-10 text-4xl rounded-full">
-					<i class="scale-75 flaticon-domain-registration"></i>
-				</div>
-				<h4>Buy your Domain</h4>
-				<p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
-			</div>
-			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item fi-center-top">
-				<div class="ft-icon">
-					<i class="flaticon-server"></i>
-				</div>
-				<h4>Cloud Database</h4>
-				<p>Ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. </p>
-			</div>
-			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-				<div class="ft-icon">
-					<i class="flaticon-devices"></i>
-				</div>
-				<h4>SSD-Only</h4>
-				<p>Suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis. </p>
-			</div>
-			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-				<div class="ft-icon">
-					<i class="flaticon-smartphone"></i>
-				</div>
-				<h4>Smart Contacts</h4>
-				<p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
-			</div>
-			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-				<div class="ft-icon">
-					<i class="flaticon-folder"></i>
-				</div>
-				<h4>Free Support</h4>
-				<p>Ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. </p>
-			</div>
-			<div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 feature-item">
-				<div class="ft-icon">
-					<i class="flaticon-viral-marketing"></i>
-				</div>
-				<h4>Viral Marketing</h4>
-				<p>Suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis. </p>
-			</div>
+			{% for block in self.feature_items %}
+				{% include_block block %}
+			{% endfor %}
 		</div>
 	</div>
 </section>
