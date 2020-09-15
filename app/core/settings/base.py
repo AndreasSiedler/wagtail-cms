@@ -29,12 +29,8 @@ INSTALLED_APPS = [
     'blog',
     'form',
     'section',
-    
     'components',
-    'snippets',
-    'streams',
     'hooks',
-
     'theme',
 
     'wagtail.contrib.forms',

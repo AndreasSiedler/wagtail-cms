@@ -1,7 +1,7 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
-from streams.blocks import default
+from components.blocks import default
 
 import json
 

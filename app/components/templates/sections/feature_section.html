@@ -1,0 +1,31 @@
+{% extends "sections/section_base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<!-- Features section -->
+<section class="features-section pt-32 pb-32">
+	<div class="container mx-auto">
+
+		<!-- Section Header -->
+		<div class="flex flex-col w-full justify-center text-center">
+			{% if self.section_subheading %}
+			<p class="uppercase tracking-loose w-full">{{ self.section_subheading }}</p>
+			{% endif %}
+			{% if self.section_heading %}
+			<h1 class="my-4 text-5xl font-bold leading-tight">{{ self.section_heading }}</h1>
+			{% endif %}
+			{% if self.section_description %}
+			<p class="leading-normal text-2xl mb-8">{{ self.section_description }}</p>
+			{% endif %}
+		</div>
+		
+		<!-- Section Body -->
+		<div class="flex flex-wrap">
+			{% for block in self.feature_items %}
+				{% include_block block %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- Features section end -->
+{% endblock %}

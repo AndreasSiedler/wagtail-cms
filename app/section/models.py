@@ -5,7 +5,7 @@ from wagtail.core.models import Page
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmetadata.models import MetadataPageMixin
 
-from snippets.sections import FeatureSection, HeroSection
+from components.sections import FeatureSection, HeroSection
 
 
 class SectionPage(MetadataPageMixin, Page):
@@ -16,7 +16,7 @@ class SectionPage(MetadataPageMixin, Page):
                 SnippetChooserBlock(
                     HeroSection,
                     icon='placeholder',
-                    template='hero_section.html'
+                    template='sections/hero_section.html'
                 )
             ),
             (
@@ -24,7 +24,7 @@ class SectionPage(MetadataPageMixin, Page):
                 SnippetChooserBlock(
                     FeatureSection,
                     icon='list-ul',
-                    template='feature_section.html'
+                    template='sections/feature_section.html'
                 )
             ),
         ],
