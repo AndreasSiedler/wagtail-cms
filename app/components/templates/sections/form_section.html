@@ -1,0 +1,54 @@
+{% extends "sections/section_base.html" %}
+{% load wagtailcore_tags %}
+{% load tailwind_filters %}
+
+{% block content %}
+<!-- Features section -->
+<section class="features-section pt-32 pb-32">
+	<div class="container mx-auto">
+        <pre>{{self}}</pre>
+        <h1>{{ self.title }}</h1>
+        {{ self.intro|richtext }}
+        <form action="{% pageurl self %}" method="POST" novalidate>
+            {% csrf_token %}
+            {% if form %}
+            {{ form|crispy }}
+            {% else %}
+            {{ self.get_form|crispy }}
+            {% endif %}
+
+            <!-- {{ self.get_form|crispy }} -->
+            <!-- {{ form|crispy }} -->
+            <!-- {% for field in self.get_form.visible_fields %}
+            <div>
+                <div class="form-group mb-10">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    <input type="{{ field.field.widget.input_type }}" class="form-control"
+                            name="{{ field.name }}" id="{{ field.id_for_label }}"
+                            {% if field.field.required %}required="required"{% endif %}>
+                    {% comment %}you might want form field for textarea or select etc. just make conditions for those {% endcomment %}
+                </div>
+            </div>
+            {% endfor %} -->
+            <input type="submit">
+        </form>
+    </div>
+</section>
+<!-- Features section end -->
+{% endblock %}
+
+
+
+<!-- {% load tailwind_filters %}
+
+{% load wagtailcore_tags %}
+
+
+<h1>{{ page.title }}</h1>
+{{ page.intro|richtext }}
+<form action="{% pageurl page %}" method="POST" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit">
+</form> -->

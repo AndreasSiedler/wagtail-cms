@@ -2,10 +2,12 @@ from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 
+from wagtail.core.blocks import PageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmetadata.models import MetadataPageMixin
 
 from components.sections import FeatureSection, HeroSection
+from form.models import FormSection
 
 
 class SectionPage(MetadataPageMixin, Page):
@@ -25,6 +27,15 @@ class SectionPage(MetadataPageMixin, Page):
                     FeatureSection,
                     icon='list-ul',
                     template='sections/feature_section.html'
+                )
+            ),
+            (
+                'form_section',
+                PageChooserBlock(
+                    FormSection,
+                    icon='list-ul',
+                    template='sections/form_section.html',
+                    can_choose_root=False
                 )
             ),
         ],
