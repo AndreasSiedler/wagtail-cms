@@ -5,6 +5,14 @@
 from wagtail.core import hooks
 
 
+@hooks.register('construct_explorer_page_queryset')
+def dont_show_index_pages(parent_page, pages, request):
+    # If we're in the 'user-profiles' section, only show the user's own profile
+    print(pages)
+
+    return pages
+
+
 @hooks.register("construct_main_menu")
 def change_snippet_name(request, menu_items):
     for item in menu_items:

@@ -10,8 +10,8 @@ DEFAULTS = {
 
     # Navbar
     'FRONTEND_NAVBAR_COLOR_SCHEME_CHOICES': (
-        ('navbar-light', 'Light - for use with a light-colored navbar'),
-        ('navbar-dark', 'Dark - for use with a dark-colored navbar'),
+        ('light_basic', 'Light'),
+        ('dark_basic', 'Dark'),
     ),
 
     'FRONTEND_NAVBAR_FORMAT_CHOICES': (
