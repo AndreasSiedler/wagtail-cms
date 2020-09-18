@@ -40,6 +40,11 @@ class FormSection(MetadataPageMixin, AbstractEmailForm):
 
     template = 'form/form_section_preview.html'
 
+    def serve(self, request):
+        if request.is_ajax():
+            print('IS AXJAX')
+        return super(FormSection, self).serve(request)
+
     def __str__(self):
         if self.title:
             return self.title + " (Form Section)"

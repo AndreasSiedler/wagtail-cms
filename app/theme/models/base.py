@@ -11,6 +11,7 @@ from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 from components.models import ButtonAction
 from .navbar import Navbar
+from .footer import Footer
 
 
 class Colors(models.Model):
@@ -44,9 +45,8 @@ class Colors(models.Model):
 
 
 @register_setting(icon='view')
-class Appearance(BaseSetting, Navbar, ButtonAction, Colors):
-    feedback_form_page = models.ForeignKey(
-        'wagtailcore.Page', null=True, on_delete=models.SET_NULL)
+class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
+
     # Navbar settings
     header_logo = models.ForeignKey(
         'wagtailimages.Image',
@@ -72,6 +72,7 @@ class Appearance(BaseSetting, Navbar, ButtonAction, Colors):
         ButtonAction.button_action_panel,
         ButtonAction.button_action_panel_advanced,
         Navbar.navbar_panel,
+        Footer.footer_panel,
         MultiFieldPanel(
             [
                 NativeColorPanel(
