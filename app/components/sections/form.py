@@ -9,6 +9,10 @@ from wagtail.core.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
 from wagtailmetadata.models import MetadataPageMixin
+from .base import SectionBase
+
+from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
 
 class FormField(AbstractFormField):
@@ -21,12 +25,13 @@ class FormIndexPage(Page):
     max_count = 1
 
 
-class FormSection(MetadataPageMixin, AbstractEmailForm):
+class FormSection(SectionBase, MetadataPageMixin, AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
 
     parent_page_types = ['components.FormIndexPage']
 
+    # layout tab panels
     content_panels = AbstractEmailForm.content_panels + [
         FieldPanel('intro', classname="full"),
         InlinePanel('form_fields', label="Form fields"),
@@ -40,8 +45,21 @@ class FormSection(MetadataPageMixin, AbstractEmailForm):
         ], "Email"),
     ]
 
-    template = 'form/form_section_preview.html'
+    basic_tab_panels = SectionBase.basic_tab_panels
 
+    # Register Tabs
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(content_panels, heading="Content"),
+            ObjectList(basic_tab_panels, heading="Design"),
+            ObjectList(SectionBase.advanced_tab_panels, heading="Advanced"),
+        ]
+    )
+
+    # Preview Template
+    template = 'sections/form_section_preview.html'
+
+    # Overriding Methods
     def serve(self, request):
         if request.is_ajax():
             print('IS AXJAX')
