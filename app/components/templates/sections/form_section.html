@@ -28,7 +28,7 @@
                 </div>
             </div>
             {% endfor %}
-            {% include "buttons/button_action.html" %}
+            <button type='submit'>Submit</button>
 
         </form>
     </div>
@@ -48,7 +48,7 @@
             var $formData = $(this).serialize()
             var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
             $.ajax({
-                method: "POST",
+                type: "POST",
                 url: $thisURL,
                 data: $formData,
                 success: handleFormSuccess,
@@ -57,22 +57,15 @@
         })
 
         function handleFormSuccess(data, textStatus, jqXHR) {
-            console.log(data)
-            console.log(textStatus)
-            console.log(jqXHR)
             $myForm[0].reset(); // reset form data
         }
 
-        function handleFormError(jqXHR, textStatus, errorThrown) {
-            // $myForm.find()
-            // console.log($myForm);
-            // console.log(jqXHR.responseJSON.errors)
-            for (const [key, value] of Object.entries(jqXHR.responseJSON.errors)) {
-                console.log($myForm.find(`#id_${key}`).next().text(value));
+        function handleFormError(data, textStatus, errorThrown) {
+            const responseJSON = JSON.parse(data.response);
+            for (const [key, value] of Object.entries(responseJSON.errors)) {
+                console.log(`#id_${key}`);
+                $myForm.find(`#id_${key}`).next().text(value);
             }
-            // console.log(textStatus)
-            // console.log(errorThrown)
-
         }
     })
 </script>

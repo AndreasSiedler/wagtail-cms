@@ -1,6 +1,7 @@
 from .base import SectionBase
 from .hero import HeroSection
 from .feature import FeatureSection
+from .form import FormIndexPage, FormSection
 
 
 # sections = [
