@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'home',
     'search',
     'blog',
-    'form',
+    # 'form',
     'section',
     'components',
     'hooks',

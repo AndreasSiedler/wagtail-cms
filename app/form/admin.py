@@ -4,7 +4,7 @@ from wagtail.contrib.modeladmin.options import (
     modeladmin_register
 )
 from components.sections import HeroSection, FeatureSection
-from .models import FormSection, FormIndexPage
+# from .models import FormIndexPage
 
 
 class HeroSectionModelAdmin(ModelAdmin):
@@ -21,21 +21,22 @@ class FeatureSectionModelAdmin(ModelAdmin):
     exclude_from_explorer = True
 
 
-@modeladmin_register
-class FormIndexPageModelAdmin(ModelAdmin):
-    model = FormIndexPage
-    add_to_settings_menu = False
-    exclude_from_explorer = True
+# @modeladmin_register
+# class FormIndexPageModelAdmin(ModelAdmin):
+#     model = FormIndexPage
+#     add_to_settings_menu = False
+#     exclude_from_explorer = True
 
 
-class FormSectionModelAdmin(ModelAdmin):
-    model = FormSection
-    menu_label = "Forms"
+# class FormSectionModelAdmin(ModelAdmin):
+#     model = FormSection
+#     menu_label = "Forms"
+#     add_to_settings_menu = False
+#     exclude_from_explorer = True
     # panels = [
     #     FieldPanel('color'),
     # ]
-    add_to_settings_menu = False
-    exclude_from_explorer = True
+
     # url_helper_class = CustomURLHelper
 
     # def get_queryset(self, request):
@@ -49,7 +50,6 @@ class ComponentsGroupAdmin(ModelAdminGroup):
     menu_order = 100
     menu_icon = "placeholder"
     items = [
-        FormSectionModelAdmin,
         HeroSectionModelAdmin,
         FeatureSectionModelAdmin
     ]
