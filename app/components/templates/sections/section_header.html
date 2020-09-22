@@ -1,0 +1,12 @@
+<!-- Section Header -->
+<div class="flex flex-col w-full justify-center text-center">
+    {% if self.section_subheading %}
+    <p class="uppercase tracking-loose w-full">{{ self.section_subheading }}</p>
+    {% endif %}
+    {% if self.section_heading %}
+    {% include "blocks/title_block.html" %}
+    {% endif %}
+    {% if self.section_description %}
+    <p class="leading-normal text-2xl mb-8">{{ self.section_description }}</p>
+    {% endif %}
+</div>

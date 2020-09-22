@@ -4,7 +4,7 @@ from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, StreamField
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
 from wagtail.core.fields import StreamField
-from .base import SectionBase
+from . import SectionBase
 
 from section.settings import cr_settings
 from components.blocks import FeatureBlock
@@ -39,30 +39,29 @@ class FeatureSection(SectionBase):
     )
 
     # layout tab panels
-    basic_tab_panels = SectionBase.basic_tab_panels + [
-        MultiFieldPanel(
-            [
-                FieldPanel('feature_layout'),
-                FieldPanel('feautre_column_count'),
-            ],
-            heading='Layout',
-            # classname='collapsible',
-            help_text="Please choose a feature layout!"
-        ),
-        MultiFieldPanel(
-            [
-                StreamFieldPanel('feature_items')
-            ],
-            heading="Features",
-            help_text="Add feature items"
-        )
+    # basic_tab_panels = SectionBase.section_content_panels + [
+    #     MultiFieldPanel(
+    #         [
+    #             FieldPanel('feature_layout'),
+    #             FieldPanel('feautre_column_count'),
+    #         ],
+    #         heading='Layout',
+    #         # classname='collapsible',
+    #         help_text="Please choose a feature layout!"
+    #     ),
+    #     MultiFieldPanel(
+    #         [
+    #             StreamFieldPanel('feature_items')
+    #         ],
+    #         heading="Features",
+    #         help_text="Add feature items"
+    #     )
 
-    ]
+    # ]
 
     # Register Tabs
     edit_handler = TabbedInterface(
         [
-            ObjectList(basic_tab_panels, heading="Basic"),
             ObjectList(SectionBase.advanced_tab_panels, heading="Advanced"),
         ]
     )
