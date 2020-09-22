@@ -1,10 +1,14 @@
-from .base import SectionBase
-from .hero import HeroSection
-from .feature import FeatureSection
+from .base_section import SectionBase
+from .hero_section import HeroSection
+from .feature_section import FeatureSection
+from .form_section import FormIndexPage, FormSection
+from .navbar import Navbar
 
 
-# sections = [
-#     ('section_page', SectionPage()),
-#     ('hero_section', HeroSection()),
-#     ('feature_section', FeatureSection()),
-# ]
+sections = [
+    # ('base_section', SectionBase()),
+    # ('hero_section', HeroSection()),
+    # ('feature_section', FeatureSection()),
+    # ('form_section', FormSection()),
+    # ('navbar', Navbar()),
+]

@@ -3,6 +3,28 @@ from functools import lru_cache
 
 DEFAULTS = {
 
+
+    # Form
+    'FORM_FIELD_WIDTH_CHOICES_DEFAULT': 'full',
+    'FORM_FIELD_WIDTH_CHOICES': (
+        ('full', 'Full width'),
+        ('half', 'Half width'),
+        ('third', 'Third width'),
+        ('quarter', 'Quarter width'),
+    ),
+
+    # Navbar
+    'NAVBAR_COLOR_SCHEME_CHOICES_DEFAULT': 'light',
+    'NAVBAR_COLOR_SCHEME_CHOICES': (
+        ('light_basic', 'Light'),
+        ('dark_basic', 'Dark'),
+    ),
+    'NAVBAR_LAYOUT_SCHEME_CHOICES_DEFAULT': 'light',
+    'NAVBAR_LAYOUT_SCHEME_CHOICES': (
+        ('light_basic', 'Light'),
+        ('dark_basic', 'Dark'),
+    ),
+
     # Button
     'BUTTON_FONT_WEIGHT_CHOICES_DEFAULT': 'font-normal',
     'BUTTON_FONT_WEIGHT_CHOICES': (
@@ -24,20 +46,60 @@ DEFAULTS = {
         ('secondary', 'Secondary Color'),
         ('custom', 'Custom Color'),
     ),
-    
+
     'BUTTON_PADDING_COICES': (
         ('px-1 py-1', 'Small'),
         ('px-4 py-4', 'Medium'),
         ('px-8 py-8', 'Large'),
         ('px-12 py-12', 'X-Large'),
     ),
-    
+
     'BUTTON_BORDER_RADIUS_COICES': (
         ('rounded-none', 'None'),
         ('rounded-sm', 'Small'),
         ('rounded-md', 'Medium'),
         ('rounded-lg', 'Large'),
         ('rounded-full', 'Full'),
+    ),
+
+    # Section
+    'SECTION_COLOR_THEME_CHOICES': (
+        ('light', 'Light'),
+        ('dark', 'Dark'),
+    ),
+
+    'SECTION_TOP_BOTTOM_PADDING_CHOICES_DEFAULT': 'py-40',
+    'SECTION_TOP_BOTTOM_PADDING_CHOICES': (
+        ('py-0', 'None'),
+        ('py-24', 'Small'),
+        ('py-40', 'Medium'),
+        ('py-56', 'Large'),
+        ('py-64', 'X-Large'),
+    ),
+
+    'SECTION_CONTAINER_WIDTH_CHOICES_DEFAULT': 'container',
+    'SECTION_CONTAINER_WIDTH_CHOICES': (
+        ('container max-w-2xl', 'Small'),
+        ('container max-w-4xl', 'Medium'),
+        ('container', 'Large'),
+        ('container max-w-full', 'Full'),
+    ),
+
+    # Blocks
+    'TITLE_FONT_SIZE_CHOICES': (
+        ('text-2xl', 'X-Small'),
+        ('text-3xl', 'Small'),
+        ('text-4xl', 'Medium'),
+        ('text-5xl', 'Large'),
+        ('text-6xl', 'X-Large'),
+    ),
+    'TITLE_FONT_WEIGHT_CHOICES': (
+        ('font-thin', 'Thin'),
+        ('font-light', 'Light'),
+        ('font-normal', 'Normal'),
+        ('font-medium', 'Medium'),
+        ('font-bold', 'Bold'),
+
     ),
 
 }

@@ -1,5 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import MultiFieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, FieldRowPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.admin.edit_handlers import (
     ObjectList,
@@ -10,7 +10,7 @@ from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 from components.models import ButtonAction
-from .navbar import Navbar
+from components.sections import Navbar
 from .footer import Footer
 
 
@@ -54,8 +54,17 @@ class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        verbose_name=('Logo image'),
-        )
+        verbose_name=('Logo Image'),
+    )
+
+    favicon_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=('Favicon'),
+    )
 
     # Body settings
     body_background_color_solid = ColorField(
@@ -63,16 +72,13 @@ class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
         null=True,
         help_text="Choose background color",
         verbose_name=('Background color'),
-        )
+    )
 
-    # layout tab panels
-    layout_tab_panels = [
+    # components tab panels
+    components_panels = [
         # PageChooserPanel('feedback_form_page', ['form.FormSection']),
-        Colors.color_panel,
         ButtonAction.button_action_panel,
-        ButtonAction.button_action_panel_advanced,
         Navbar.navbar_panel,
-        Footer.footer_panel,
         MultiFieldPanel(
             [
                 NativeColorPanel(
@@ -84,26 +90,34 @@ class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
         )
     ]
     # branding tab panels
-    branding_tab_panels = [
+    branding_panels = [
         MultiFieldPanel(
             [
-                ImageChooserPanel('header_logo'),
+                FieldRowPanel([
+                    NativeColorPanel('color_primary',
+                                     heading='Color 1', classname="col6"),
+                    NativeColorPanel('color_secondary',
+                                     heading='Color 2', classname="col6"),
+                ]),
             ],
-            heading='Logo and Favicon',
-            classname='collapsible',
+            heading='Colors',
         ),
         MultiFieldPanel(
             [
-
+                FieldRowPanel([
+                    ImageChooserPanel(
+                        'header_logo', heading='Logo', classname="col12"),
+                    ImageChooserPanel(
+                        'favicon_image', heading='Favicon', classname="col12"),
+                ]),
             ],
-            heading='Colors',
-            classname='collapsible collapsed',
-        )
+            heading='Logo and Favicon',
+        ),
     ]
     # Register Tabs
     edit_handler = TabbedInterface(
         [
-            ObjectList(layout_tab_panels, heading="Layout"),
-            ObjectList(branding_tab_panels, heading="Branding"),
+            ObjectList(branding_panels, heading="Branding"),
+            ObjectList(components_panels, heading="Components"),
         ]
     )

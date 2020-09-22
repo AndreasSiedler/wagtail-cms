@@ -8,7 +8,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmetadata.models import MetadataPageMixin
 
 from components.sections import FeatureSection, HeroSection
-from form.models import FormSection
+from components.sections import FormSection
 
 
 class SectionPage(MetadataPageMixin, Page):

@@ -78,7 +78,6 @@ class HeroSection(SectionBase, ButtonAction):
         ),
         StreamFieldPanel('hero_buttons'),
         ButtonAction.button_action_panel,
-        ButtonAction.button_action_panel_advanced,
     ]
 
     # Register Tabs

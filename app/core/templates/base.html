@@ -7,7 +7,7 @@
         <meta charset="utf-8" />
         
         {% comment %} Check if Page object {% endcomment %}
-        {% if self %}
+        {% if self.meta_tags %}
             {% meta_tags %}
         {% endif %}
 
@@ -36,7 +36,7 @@
 
         <!-- Footer -->
         <footer>
-            {% include "footer/footer_form.html" %}
+            <!-- {% include "footer/footer_form.html" %} -->
         </footer>
 
 

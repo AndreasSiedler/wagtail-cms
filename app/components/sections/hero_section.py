@@ -5,7 +5,7 @@ from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
 from wagtail.images.edit_handlers import ImageChooserPanel
 from components.models import ButtonAction
-from .base import SectionBase
+from . import SectionBase
 from wagtail.core.fields import StreamField
 from components.blocks import ActionButton, PrimaryButton
 
@@ -78,7 +78,6 @@ class HeroSection(SectionBase, ButtonAction):
         ),
         StreamFieldPanel('hero_buttons'),
         ButtonAction.button_action_panel,
-        ButtonAction.button_action_panel_advanced,
     ]
 
     # Register Tabs
