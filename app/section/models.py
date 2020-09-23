@@ -11,6 +11,12 @@ from components.sections import FeatureSection, HeroSection
 from components.sections import FormSection
 
 
+class Section(Page):
+    class Meta:
+        verbose_name = 'Section'
+        verbose_name_plural = 'Sections'
+
+
 class SectionPage(MetadataPageMixin, Page):
     body = StreamField(
         [
@@ -32,7 +38,7 @@ class SectionPage(MetadataPageMixin, Page):
             ),
             (
                 'form_section',
-                PageChooserBlock(
+                SnippetChooserBlock(
                     FormSection,
                     icon='list-ul',
                     template='sections/form_section.html',

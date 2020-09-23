@@ -1,11 +1,6 @@
 Django>=3.0,<3.1
 wagtail>=2.10,<2.11
-django-widget-tweaks>=1.4,<1.5
 wagtail-metadata>=3.2.0,<3.3
 wagtailmenus==3.0.*
 django_compressor>=2.4,<2.5
-braintree==3.57.*
-django-flatpickr==1.0.*
-django-crispy-forms==1.9.*
-crispy-tailwind==0.2.*
 wagtail-color-panel==1.1.*

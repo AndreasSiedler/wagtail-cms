@@ -1,5 +1,6 @@
 from django.db import models
 from wagtail.core.models import Page
+from wagtail.snippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (
@@ -10,8 +11,8 @@ from wagtail.core.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
 from components.sections import SectionBase
-from components.models import ButtonAction
-from components.blocks.title_block import TitleBlock
+from components.blocks import ButtonAction
+from components.blocks import SectionTitleBlock
 
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 from components.settings import cr_settings
@@ -38,10 +39,12 @@ class FormField(AbstractFormField):
 class FormIndexPage(Page):
     # parent_page_types = []
     parent_page_types = ['home.HomePage']
+    subpage_types = ['components.FormSection']
     max_count = 1
 
 
-class FormSection(SectionBase, TitleBlock, ButtonAction, AbstractEmailForm):
+@register_snippet
+class FormSection(SectionBase, SectionTitleBlock, ButtonAction, AbstractEmailForm):
 
     form_submit_button_text = models.CharField(
         blank=True,
@@ -62,7 +65,7 @@ class FormSection(SectionBase, TitleBlock, ButtonAction, AbstractEmailForm):
 
     # advanced tab panels
     advanced_panels = [
-        TitleBlock.title_basic_panels,
+        SectionTitleBlock.title_basic_panels,
         ButtonAction.button_action_panel
     ]
 
@@ -92,6 +95,7 @@ class FormSection(SectionBase, TitleBlock, ButtonAction, AbstractEmailForm):
     # Page settings
     template = 'sections/form_section_preview.html'
     parent_page_types = ['components.FormIndexPage']
+    subpage_types = []
 
     # Overriding Methods
     # def get_form(self, *args, **kwargs):
@@ -110,3 +114,7 @@ class FormSection(SectionBase, TitleBlock, ButtonAction, AbstractEmailForm):
             return self.title + " (Form Section)"
         else:
             return super(AbstractEmailForm, self).__str__()
+
+    class Meta:
+        verbose_name = 'Form Section'
+        verbose_name_plural = 'Form Sections'

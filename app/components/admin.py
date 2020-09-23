@@ -5,6 +5,7 @@ from wagtail.contrib.modeladmin.options import (
 )
 from components.sections import HeroSection, FeatureSection
 from .sections import FormIndexPage, FormSection
+from section.models import SectionPage
 
 
 class HeroSectionModelAdmin(ModelAdmin):
@@ -21,11 +22,11 @@ class FeatureSectionModelAdmin(ModelAdmin):
     exclude_from_explorer = True
 
 
-@modeladmin_register
-class FormIndexPageModelAdmin(ModelAdmin):
-    model = FormIndexPage
-    add_to_settings_menu = False
-    exclude_from_explorer = True
+# @modeladmin_register
+# class FormIndexPageModelAdmin(ModelAdmin):
+#     model = FormIndexPage
+#     add_to_settings_menu = False
+#     exclude_from_explorer = True
 
 
 class FormSectionModelAdmin(ModelAdmin):
@@ -42,6 +43,23 @@ class FormSectionModelAdmin(ModelAdmin):
     # def get_queryset(self, request):
     #     qs = super().get_queryset(request)
     #     return qs.filter(color="blau")
+
+
+# @modeladmin_register
+# class SectionsModelAdmin(ModelAdmin):
+#     model = SectionPage
+#     menu_label = "Sections"
+#     add_to_settings_menu = False
+#     exclude_from_explorer = True
+#     # panels = [
+#     #     FieldPanel('color'),
+#     # ]
+
+#     # url_helper_class = CustomURLHelper
+#         # Schau dir django reverse querying von JSONfields an
+#     def get_queryset(self, request):
+#         qs = super().get_queryset(request)
+#         return qs.filter(color="blau")
 
 
 # Register your models here.

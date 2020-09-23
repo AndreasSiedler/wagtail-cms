@@ -1,3 +1,7 @@
+from .button_blocks import ButtonAction
+from .section_blocks import SectionTitleBlock
+
+
 from .base import HashBlock  # noqa
 from .blocks import (
     ActionButton,

@@ -3,6 +3,31 @@
 # from django.utils.safestring import mark_safe
 
 from wagtail.core import hooks
+from components.admin import FormSectionModelAdmin, FormSection
+from django.shortcuts import redirect
+from wagtail.snippets.wagtail_hooks import SnippetsMenuItem
+from django.http import HttpResponse
+
+
+@hooks.register('before_edit_snippet')
+def block_snippet_edit(request, instance):
+    if isinstance(instance) and instance.prevent_edit:
+        print('Edit Snippet')
+
+
+@hooks.register('construct_page_listing_buttons')
+def remove_page_listing_button_item(buttons, page, page_perms, is_parent=False, context=None):
+    if is_parent:
+        buttons.pop()
+
+
+@hooks.register('after_publish_page')
+def after_publish_page(request, page_class):
+    # Use a custom create view for the AwesomePage model
+    if type(page_class) == FormSection:
+        url_helper = FormSectionModelAdmin().url_helper
+        index_url = url_helper.get_action_url('index')
+        return redirect(index_url)
 
 
 @hooks.register('construct_explorer_page_queryset')
@@ -13,11 +38,17 @@ def dont_show_index_pages(parent_page, pages, request):
     return pages
 
 
-@hooks.register("construct_main_menu")
-def change_snippet_name(request, menu_items):
-    for item in menu_items:
-        if item.__class__.__name__ == "SnippetsMenuItem":
-            item.label = "Sections & Blocks"
+@hooks.register('construct_main_menu')
+def hide_snippets_menu_item(request, menu_items):
+    menu_items[:] = [item for item in menu_items if not isinstance(item, SnippetsMenuItem)]
+
+
+# @hooks.register("construct_main_menu")
+# def change_snippet_name(request, menu_items):
+#     for item in menu_items:
+#         if item.__class__.__name__ == "SnippetsMenuItem":
+#             item.label = "Sections & Blocks"
+
 
 # @hooks.register('insert_editor_css')
 # def editor_css():

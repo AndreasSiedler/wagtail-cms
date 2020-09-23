@@ -4,7 +4,7 @@ from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, StreamField
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
 from wagtail.images.edit_handlers import ImageChooserPanel
-from components.models import ButtonAction
+from components.blocks import ButtonAction
 from . import SectionBase
 from wagtail.core.fields import StreamField
 from components.blocks import ActionButton, PrimaryButton

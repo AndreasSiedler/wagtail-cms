@@ -1,10 +1,10 @@
 from django.db import models
-from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, FieldRowPanel
-
+from wagtail.admin.edit_handlers import (
+    MultiFieldPanel, FieldPanel, FieldRowPanel)
 from components.settings import cr_settings
 
 
-class TitleBlock(models.Model):
+class SectionTitleBlock(models.Model):
 
     title_font_size = models.CharField(
         blank=True,
