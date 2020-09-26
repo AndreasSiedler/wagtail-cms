@@ -11,8 +11,7 @@ from wagtail.core.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
 from components.sections import SectionBase
-from components.blocks import ButtonAction
-from components.blocks import SectionTitleBlock
+from components.blocks import SectionTitleBlock, ButtonAction
 
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 from components.settings import cr_settings
@@ -37,7 +36,6 @@ class FormField(AbstractFormField):
 
 
 class FormIndexPage(Page):
-    # parent_page_types = []
     parent_page_types = ['home.HomePage']
     subpage_types = ['components.FormSection']
     max_count = 1
