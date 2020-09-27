@@ -7,8 +7,9 @@ from wagtail.core.blocks import PageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmetadata.models import MetadataPageMixin
 
-from components.sections import FeatureSection, HeroSection
-from components.sections import FormSection
+from components.sections import (
+    FeatureSection, HeroSection, FormSection, SubscriptionSection)
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 
 class Section(Page):
@@ -17,7 +18,7 @@ class Section(Page):
         verbose_name_plural = 'Sections'
 
 
-class SectionPage(MetadataPageMixin, Page):
+class SectionPage(MetadataPageMixin, RoutablePageMixin, Page):
     body = StreamField(
         [
             (
@@ -45,6 +46,15 @@ class SectionPage(MetadataPageMixin, Page):
                     can_choose_root=False
                 )
             ),
+            (
+                'subscription_section',
+                SnippetChooserBlock(
+                    SubscriptionSection,
+                    icon='list-ul',
+                    template='sections/subscription_section.html',
+                    can_choose_root=False
+                )
+            ),
         ],
         blank=True,
         help_text=''
@@ -54,20 +64,25 @@ class SectionPage(MetadataPageMixin, Page):
     ]
     # ajax_template = "section/section_page_ajax.html"
 
-    def serve(self, request):
-        if request.is_ajax():
-            if request.method == 'POST':
-                fs = FormSection.objects.get(pk=request.POST['id'])
-                form = fs.get_form(request.POST, request.FILES,
-                                   page=fs, user=request.user)
+    # def serve(self, request):
+    #     if request.is_ajax():
+    #         if request.method == 'POST':
+    #             fs = FormSection.objects.get(pk=request.POST['id'])
+    #             form = fs.get_form(request.POST, request.FILES,
+    #                                page=fs, user=request.user)
 
-                if form.is_valid():
-                    form_submission = fs.process_form_submission(form)
-                    return JsonResponse({'success': True})
-                else:
-                    return JsonResponse({'success': False,
-                                         'errors': form.errors}, status=400)
-        return super(SectionPage, self).serve(request)
+    #             if form.is_valid():
+    #                 form_submission = fs.process_form_submission(form)
+    #                 return JsonResponse({'success': True})
+    #             else:
+    #                 return JsonResponse({'success': False,
+    #                                      'errors': form.errors}, status=400)
+    #     return super(SectionPage, self).serve(request)
+
+    @route(r'^create-customer/$')
+    def webhook_received(self, request):
+        if request.is_ajax():
+            print('IS AXJAX')
 
     class Meta:
         verbose_name = 'Section Page'

@@ -4,3 +4,4 @@ wagtail-metadata>=3.2.0,<3.3
 wagtailmenus==3.0.*
 django_compressor>=2.4,<2.5
 wagtail-color-panel==1.1.*
+stripe>=2.48.0,<3.0

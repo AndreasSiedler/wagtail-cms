@@ -2,6 +2,7 @@ from .base_section import SectionBase
 from .hero_section import HeroSection
 from .feature_section import FeatureSection
 from .form_section import FormIndexPage, FormSection
+from .subscription_section import SubscriptionSection
 from .navbar import Navbar
 
 
