@@ -43,7 +43,7 @@ class HeroSection(SectionBase, SectionTitleBlock, ButtonAction, Page):
         'wagtailimages.Image',
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         verbose_name='Image',
         related_name='+',
     )
