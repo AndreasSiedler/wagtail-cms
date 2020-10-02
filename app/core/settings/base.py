@@ -32,7 +32,6 @@ if ENV_FILE:
 INSTALLED_APPS = [
     'home',
     'search',
-    # 'form',
     'section',
     'components',
     'hooks',
