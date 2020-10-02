@@ -9,7 +9,7 @@
 {% include "sections/section_header.html" %}
 
 <!-- Section Body -->
-<form id="form-{{self.id}}" novalidate method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'>
+<form id="form-{{self.id}}" novalidate method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}?type=submit-form'>
     {% csrf_token %}
     <input type="hidden" name="id" value={{self.id}}>
     {% for field in self.get_form.visible_fields %}

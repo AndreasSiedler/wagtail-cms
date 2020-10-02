@@ -29,12 +29,6 @@ class SubscriptionSectionModelAdmin(ModelAdmin):
     add_to_settings_menu = False
     exclude_from_explorer = True
 
-# @modeladmin_register
-# class FormIndexPageModelAdmin(ModelAdmin):
-#     model = FormIndexPage
-#     add_to_settings_menu = False
-#     exclude_from_explorer = True
-
 
 class FormSectionModelAdmin(ModelAdmin):
     model = FormSection

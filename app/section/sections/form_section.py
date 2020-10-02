@@ -15,6 +15,7 @@ from section.blocks import SectionTitleBlock, ButtonAction
 
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 from section.settings import cr_settings
+from django.http import JsonResponse
 
 
 class FormField(AbstractFormField):
@@ -92,7 +93,7 @@ class FormSection(SectionBase, SectionTitleBlock, ButtonAction, AbstractEmailFor
 
     # Page settings
     template = 'sections/form_section_preview.html'
-    parent_page_types = ['section.FormIndexPage']
+    parent_page_types = ['home.HomePage']
     subpage_types = []
 
     # Overriding Methods
@@ -101,6 +102,7 @@ class FormSection(SectionBase, SectionTitleBlock, ButtonAction, AbstractEmailFor
     #     # Get form and update attributes
     #     # https://stackoverflow.com/questions/48321770/how-to-modify-attributes-of-the-wagtail-form-input-fields
     #     return form
+
 
     def serve(self, request):
         if request.is_ajax():
