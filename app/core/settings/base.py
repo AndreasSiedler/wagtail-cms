@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'home',
     'search',
     'section',
-    'components',
+    # 'components',
     'hooks',
     'theme',
 
