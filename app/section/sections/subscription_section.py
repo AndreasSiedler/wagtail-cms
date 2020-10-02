@@ -5,10 +5,10 @@ from wagtail.admin.edit_handlers import (
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 
 from wagtail.images.edit_handlers import ImageChooserPanel
-from components.blocks import ButtonAction, SectionTitleBlock
+from section.blocks import ButtonAction, SectionTitleBlock
 from . import SectionBase
 from wagtail.core.fields import StreamField
-from components.blocks import ActionButton, PrimaryButton
+from section.blocks import ActionButton, PrimaryButton
 from wagtail.core.models import Page
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 

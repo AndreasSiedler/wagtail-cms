@@ -10,11 +10,11 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
-from components.sections import SectionBase
-from components.blocks import SectionTitleBlock, ButtonAction
+from section.sections import SectionBase
+from section.blocks import SectionTitleBlock, ButtonAction
 
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
-from components.settings import cr_settings
+from section.settings import cr_settings
 
 
 class FormField(AbstractFormField):
@@ -37,7 +37,7 @@ class FormField(AbstractFormField):
 
 class FormIndexPage(Page):
     parent_page_types = ['home.HomePage']
-    subpage_types = ['components.FormSection']
+    subpage_types = ['section.FormSection']
     max_count = 1
 
 
@@ -92,7 +92,7 @@ class FormSection(SectionBase, SectionTitleBlock, ButtonAction, AbstractEmailFor
 
     # Page settings
     template = 'sections/form_section_preview.html'
-    parent_page_types = ['components.FormIndexPage']
+    parent_page_types = ['section.FormIndexPage']
     subpage_types = []
 
     # Overriding Methods

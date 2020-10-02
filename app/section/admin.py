@@ -3,7 +3,7 @@ from wagtail.contrib.modeladmin.options import (
     ModelAdminGroup,
     modeladmin_register
 )
-from components.sections import (
+from section.sections import (
     HeroSection, FeatureSection, SubscriptionSection)
 from .sections import FormIndexPage, FormSection
 from section.models import SectionPage

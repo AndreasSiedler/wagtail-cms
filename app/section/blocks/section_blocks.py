@@ -1,7 +1,7 @@
 from django.db import models
 from wagtail.admin.edit_handlers import (
     MultiFieldPanel, FieldPanel, FieldRowPanel)
-from components.settings import cr_settings
+from section.settings import cr_settings
 
 
 class SectionTitleBlock(models.Model):

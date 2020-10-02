@@ -8,7 +8,7 @@ class Footer(models.Model):
     # Panels
     # footer_panel = MultiFieldPanel(
     #     [
-    #         PageChooserPanel('feedback_form_page', ['components.FormSection']),
+    #         PageChooserPanel('feedback_form_page', ['section.FormSection']),
     #     ],
     #     heading='Footer',
     #     classname='collapsible',

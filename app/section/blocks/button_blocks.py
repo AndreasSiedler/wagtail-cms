@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, FieldRowPanel
 from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
-from components.settings import cr_settings
+from section.settings import cr_settings
 
 
 class ButtonAction(models.Model):

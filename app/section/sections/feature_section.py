@@ -7,7 +7,7 @@ from wagtail.core.fields import StreamField
 from . import SectionBase
 
 from section.settings import cr_settings
-from components.blocks import FeatureBlock
+from section.blocks import FeatureBlock
 
 
 @register_snippet

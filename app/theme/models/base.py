@@ -9,8 +9,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 
-from components.blocks import ButtonAction
-from components.sections import Navbar
+from section.blocks import ButtonAction
+from section.sections import Navbar
 from .footer import Footer
 
 

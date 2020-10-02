@@ -3,7 +3,7 @@
 # from django.utils.safestring import mark_safe
 
 from wagtail.core import hooks
-from components.admin import FormSectionModelAdmin, FormSection
+from section.admin import FormSectionModelAdmin, FormSection
 from django.shortcuts import redirect
 from wagtail.snippets.wagtail_hooks import SnippetsMenuItem
 from django.http import HttpResponse

@@ -7,7 +7,7 @@ from wagtail.core.blocks import PageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmetadata.models import MetadataPageMixin
 
-from components.sections import (
+from section.sections import (
     FeatureSection, HeroSection, FormSection, SubscriptionSection)
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 import stripe

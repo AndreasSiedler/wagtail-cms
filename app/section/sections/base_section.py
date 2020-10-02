@@ -7,7 +7,7 @@ from wagtail.admin.edit_handlers import (
     MultiFieldPanel, FieldPanel, FieldRowPanel)
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from components.settings import cr_settings
+from section.settings import cr_settings
 
 
 class SectionBase(models.Model):
