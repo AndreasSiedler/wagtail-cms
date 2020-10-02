@@ -49,7 +49,6 @@ urlpatterns = urlpatterns + [
 
     # API
     path('api/v2/', api_router.urls),
-    path('api/v1/subscriptions/', include('subscriptions.urls')),
 
     # Wagtail URLS
     url(r"", include(wagtail_urls)),
