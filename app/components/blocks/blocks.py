@@ -52,14 +52,14 @@ class FeatureBlock(StructBlock):
         classname='block_content_field'
     )
     more_info_url = URLBlock(
-        required=False, 
+        required=False,
         label='URL',
         help_text='A link to be followed for more information',
         classname='block_content_field'
     )
 
     class Meta:
-        template = 'blocks/feature_item_block.html'
+        template = 'blocks/section_feature_item.html'
         icon = 'tick-inverse'
         label = 'Add Feature'
 

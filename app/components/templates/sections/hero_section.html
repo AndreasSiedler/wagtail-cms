@@ -1,25 +1,29 @@
-{% extends "sections/section_base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+<!-- Define Layouts with include files here -->
 
+{% extends "sections/section_base.html" %}
 
 {% block content %}
-<!--Left Col-->
+<!--Simple centered-->
+{% if self.hero_layout == "simple_centered" %}
 <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-	{% if self.section_subheading %}
-	<p class="uppercase tracking-loose w-full">{{ self.section_subheading }}</p>
-	{% endif %}
-	{% if self.section_heading %}
-	<h1 class="my-4 text-5xl font-bold leading-tight">{{ self.section_heading }}</h1>
-	{% endif %}
-	{% if self.section_description %}
-	<p class="leading-normal text-2xl mb-8">{{ self.section_description }}</p>
-	{% endif %}
-	{% if self.hero_first_button_text %}
-	{% include "buttons/button_action.html" %}
-	{% endif %}
+	{% include "blocks/section_subheading.html" %}
+	{% include "blocks/section_heading.html" %}
+	{% include "blocks/section_description.html" %}
+	{% include "blocks/section_button_action.html" with button_type="first_button" %}
+	{% include "blocks/section_button_action.html" with button_type="second_button" %}
+	{% include "blocks/section_hero_image.html" %}
+
 </div>
-<!--Right Col-->
-<div class="w-full md:w-3/5 py-6 text-center">
-	{% image self.hero_image width-640 class="max-w-screen-sm m-auto w-full" %}
+
+<!--Image on right-->
+{% elif self.hero_layout == "image_right" %}
+<div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+	{% include "blocks/section_subheading.html" %}
+	{% include "blocks/section_heading.html" %}
+	{% include "blocks/section_description.html" %}
+	{% include "blocks/section_button_action.html" with button_type="first_button" %}
+	{% include "blocks/section_button_action.html" with button_type="second_button" %}
+	{% include "blocks/section_hero_image.html" %}
 </div>
+{% endif %}
 {% endblock %}

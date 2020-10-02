@@ -10,6 +10,9 @@ from wagtailmetadata.models import MetadataPageMixin
 from components.sections import (
     FeatureSection, HeroSection, FormSection, SubscriptionSection)
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+import stripe
+import json
+import os
 
 
 class Section(Page):
@@ -80,9 +83,24 @@ class SectionPage(MetadataPageMixin, RoutablePageMixin, Page):
     #     return super(SectionPage, self).serve(request)
 
     @route(r'^create-customer/$')
-    def webhook_received(self, request):
+    def create_customer(self, request):
         if request.is_ajax():
             print('IS AXJAX')
+            # Reads application/json and returns a response
+            data = json.loads(request.data)
+            try:
+                # Create a new customer object
+                customer = stripe.Customer.create(
+                    email=data['email']
+                )
+                # At this point, associate the ID of the Customer object with your
+                # own internal representation of a customer, if you have one.
+
+                return jsonify(
+                    customer=customer,
+                )
+            except Exception as e:
+                return jsonify(error=str(e)), 403
 
     class Meta:
         verbose_name = 'Section Page'

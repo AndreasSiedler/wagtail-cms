@@ -1,0 +1,71 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+    <div class="mb-4">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
+            Username
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="username" type="text"
+            placeholder="Username">
+    </div>
+    <div class="mb-6">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+            Password
+        </label>
+        <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+            id="password" type="password" placeholder="******************">
+        <p class="text-red text-xs italic">Please choose a password.</p>
+    </div>
+    <div class="flex items-center justify-between">
+        <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
+            Sign In
+        </button>
+        <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
+            Forgot Password?
+        </a>
+    </div>
+</div>
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+    of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+    <ul class="socialaccount_providers">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </ul>
+
+    <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form>
+
+{% endblock %}

@@ -1,4 +1,5 @@
 -r base.txt
 
+pylint-django
 django-debug-toolbar==2.2.*
 ipython==7.16.*

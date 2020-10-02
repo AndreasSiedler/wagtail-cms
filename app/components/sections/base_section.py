@@ -11,6 +11,7 @@ from components.settings import cr_settings
 
 
 class SectionBase(models.Model):
+    # Content
     section_name = models.CharField(
         blank=True,
         null=True,

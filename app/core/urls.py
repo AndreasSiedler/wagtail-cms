@@ -11,6 +11,7 @@ from core.views import robots_txt
 
 from search import views as search_views
 from wagtail.contrib.sitemaps.views import sitemap
+from .api import api_router
 
 
 urlpatterns = [
@@ -34,17 +35,22 @@ if settings.DEBUG:
 
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 
 urlpatterns = urlpatterns + [
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
+    
     url(r'^sitemap\.xml$', sitemap),
     url(r'^robots\.txt$', robots_txt, name='robots'),
-    url(r"", include(wagtail_urls)),
 
-    # Alternatively, if you want Wagtail pages to be served from a subpath
-    # of your site, rather than the site root:
-    #    url(r"^pages/", include(wagtail_urls)),
+    # All Auth
+    # path('accounts/', include('allauth.urls')),
+    url(r"", include('allauth.urls')),
+
+    # API
+    path('api/v2/', api_router.urls),
+    path('api/v1/subscriptions/', include('subscriptions.urls')),
+
+    # Wagtail URLS
+    url(r"", include(wagtail_urls)),
 ]
