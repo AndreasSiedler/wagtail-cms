@@ -10,7 +10,7 @@ from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 from section.blocks import ButtonAction
-from section.sections import Navbar
+from .navbar import Navbar
 from .footer import Footer
 
 
