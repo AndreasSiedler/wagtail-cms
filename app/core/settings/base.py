@@ -28,8 +28,8 @@ if ENV_FILE:
 
 
 # Application definition
-
 INSTALLED_APPS = [
+    # Custom Apps (Your project's apps)
     'home',
     'search',
     'section',
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'hooks',
     'theme',
 
+    # Wagtail Apps
+    'wagtail.contrib.routable_page',
+    'wagtail.contrib.modeladmin',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.contrib.settings',
@@ -51,6 +54,7 @@ INSTALLED_APPS = [
     'wagtail.core',
     'wagtail.api.v2',
 
+    # Third-Party Apps
     'modelcluster',
     'taggit',
     'compressor',
@@ -59,22 +63,18 @@ INSTALLED_APPS = [
     'wagtailmenus',
     'wagtail_color_panel',
     'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
+    # Django Apps
     'django.contrib.admin',
-    'wagtail.contrib.modeladmin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'wagtail.contrib.routable_page',
-
-    # ALl Auth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-
 ]
 
 MIDDLEWARE = [
@@ -85,7 +85,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -204,21 +203,4 @@ MEDIA_URL = '/media/'
 
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "core"
-
-# Base URL to use when referring to full URLs within the Wagtail admin backend -
-# e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
-
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
-
-
-# STRIPE CONFIGURATION
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-STRIPE_LIVE_MODE = False  # Change to True in production
-DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
