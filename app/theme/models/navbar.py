@@ -7,19 +7,20 @@ from section.settings import cr_settings
 
 
 class Navbar(models.Model):
-    navbar_color_scheme = models.CharField(
-        blank=True,
-        max_length=50,
-        choices=cr_settings['NAVBAR_COLOR_SCHEME_CHOICES'],
-        default=cr_settings['NAVBAR_COLOR_SCHEME_CHOICES_DEFAULT'],
-        verbose_name=('Color type'),
-        # help_text=('A call to action button (CTA), depending on the situation, will usually prompt users to sign up/register/buy now/etc. CTA buttons should be used where the platform wants to strongly suggest something that the user should do.'),  # noqa
-    ),
+
     navbar_layout_scheme = models.CharField(
         blank=True,
         max_length=50,
         choices=cr_settings['NAVBAR_LAYOUT_SCHEME_CHOICES'],
         default=cr_settings['NAVBAR_LAYOUT_SCHEME_CHOICES_DEFAULT'],
+        verbose_name=('Layout Scheme'),
+        # help_text=('A call to action button (CTA), depending on the situation, will usually prompt users to sign up/register/buy now/etc. CTA buttons should be used where the platform wants to strongly suggest something that the user should do.'),  # noqa
+    )
+    navbar_color_scheme = models.CharField(
+        blank=True,
+        max_length=50,
+        choices=cr_settings['NAVBAR_COLOR_SCHEME_CHOICES'],
+        default=cr_settings['NAVBAR_COLOR_SCHEME_CHOICES_DEFAULT'],
         verbose_name=('Color type'),
         # help_text=('A call to action button (CTA), depending on the situation, will usually prompt users to sign up/register/buy now/etc. CTA buttons should be used where the platform wants to strongly suggest something that the user should do.'),  # noqa
     )
