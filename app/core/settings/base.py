@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-envfrom dotenv import find_dotenv, load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -32,7 +32,6 @@ if ENV_FILE:
 INSTALLED_APPS = [
     'home',
     'search',
-    'blog',
     # 'form',
     'section',
     'components',
