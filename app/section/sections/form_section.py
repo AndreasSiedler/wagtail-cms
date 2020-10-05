@@ -63,10 +63,9 @@ class FormSection(SectionBase, SectionTitleBlock, ButtonAction, AbstractEmailFor
     ]
 
     # advanced tab panels
-    advanced_panels = [
+    advanced_panels = (
         SectionTitleBlock.title_basic_panels,
-        ButtonAction.button_action_panel
-    ]
+    ) + ButtonAction.button_action_panels
 
     # form tab panels
     form_panels = [
@@ -102,7 +101,6 @@ class FormSection(SectionBase, SectionTitleBlock, ButtonAction, AbstractEmailFor
     #     # Get form and update attributes
     #     # https://stackoverflow.com/questions/48321770/how-to-modify-attributes-of-the-wagtail-form-input-fields
     #     return form
-
 
     def serve(self, request):
         if request.is_ajax():

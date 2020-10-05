@@ -5,9 +5,11 @@
 <nav 
     id="header" 
     class="{% spaceless %}
+        {% comment %} NAVBAR_COLOR_SCHEME {% endcomment %}
         {% endspaceless %}{% if theme.navbar_color_scheme == 'light_basic' %}bg-white text-gray-900 {% endif %}{% spaceless %}
         {% endspaceless %}{% if theme.navbar_color_scheme == 'dark_basic' %}bg-gray-900 text-white {% endif %}{% spaceless %}
 
+        {% comment %} NAVBAR_FIXED {% endcomment %}
         {% endspaceless %}{% if theme.navbar_fixed %}fixed {% endif %}{% spaceless %}
         {% endspaceless %}w-full">
 

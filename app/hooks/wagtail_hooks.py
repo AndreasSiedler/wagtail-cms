@@ -6,13 +6,39 @@ from wagtail.core import hooks
 from section.admin import FormSectionModelAdmin, FormSection
 from django.shortcuts import redirect
 from wagtail.snippets.wagtail_hooks import SnippetsMenuItem
+from wagtail.contrib.modeladmin.menus import ModelAdminMenuItem
 from django.http import HttpResponse
+from django.utils.safestring import mark_safe
+from wagtail.admin.menu import MenuItem
+from django.urls import reverse
+from theme.admin import ThemeAdmin
+from theme.models import Appearance
 
 
-@hooks.register('before_edit_snippet')
-def block_snippet_edit(request, instance):
-    if isinstance(instance) and instance.prevent_edit:
-        print('Edit Snippet')
+@hooks.register('register_admin_menu_item')
+def register_frank_menu_item():
+    """
+    Use the admin instance url helper to create the url
+    """
+    url_helper = ThemeAdmin().url_helper
+    index_url = url_helper.get_action_url('edit', 1)
+    return MenuItem('Appearance', index_url, icon_name='snippet', order=10000)
+
+
+class WelcomePanel:
+    order = 50
+
+    def render(self):
+        return mark_safe("""
+        <section class="panel summary nice-padding">
+          <h3>No, but seriously -- welcome to the admin homepage.Please change your global design!</h3> 
+        </section>
+        """)
+
+
+@hooks.register('construct_homepage_panels')
+def add_another_welcome_panel(request, panels):
+    panels.append(WelcomePanel())
 
 
 @hooks.register('construct_page_listing_buttons')
@@ -30,24 +56,14 @@ def after_publish_page(request, page_class):
         return redirect(index_url)
 
 
-@hooks.register('construct_explorer_page_queryset')
-def dont_show_index_pages(parent_page, pages, request):
-    # If we're in the 'user-profiles' section, only show the user's own profile
-    print(pages)
-
-    return pages
-
-
 @hooks.register('construct_main_menu')
 def hide_snippets_menu_item(request, menu_items):
-    menu_items[:] = [item for item in menu_items if not isinstance(item, SnippetsMenuItem)]
-
-
-# @hooks.register("construct_main_menu")
-# def change_snippet_name(request, menu_items):
-#     for item in menu_items:
-#         if item.__class__.__name__ == "SnippetsMenuItem":
-#             item.label = "Sections & Blocks"
+    """
+    Loop throug the admin menu items and hide via defining the instace type or the label or etc.
+    Use the debug launcher for it
+    """
+    menu_items[:] = [item for item in menu_items if not isinstance(
+        item, ModelAdminMenuItem) and not isinstance(item, SnippetsMenuItem)]
 
 
 # @hooks.register('insert_editor_css')
@@ -72,7 +88,6 @@ def hide_snippets_menu_item(request, menu_items):
 #         static("css/custom.css")
 #     )
 
-
 # @hooks.register("insert_global_admin_js", order=100)
 # def global_admin_js():
 #     """Add /static/css/custom.js to the admin."""
@@ -80,19 +95,3 @@ def hide_snippets_menu_item(request, menu_items):
 #         '<script src="{}"></script>',
 #         static("/js/custom.js")
 #     )
-
-
-# class WelcomePanel:
-#     order = 110
-
-#     def render(self):
-#         return mark_safe("""
-#         <section class="panel summary nice-padding">
-#           <h3>Dashboard Panel Section Title</h3>
-#           <button data-modal-trigger="some-param">Open Modal</button>
-#         </section>
-#         """)
-
-# @hooks.register('construct_homepage_panels')
-# def add_another_welcome_panel(request, panels):
-#     panels.append(WelcomePanel())

@@ -87,10 +87,9 @@ class HeroSection(SectionBase, SectionTitleBlock, ButtonAction, Page):
     ]
 
     # advanced tab panels
-    advanced_panels = [
+    advanced_panels = (
         SectionTitleBlock.title_basic_panels,
-        ButtonAction.button_action_panel
-    ]
+    ) + ButtonAction.button_action_panels
 
     # Register Tabs
     edit_handler = TabbedInterface(

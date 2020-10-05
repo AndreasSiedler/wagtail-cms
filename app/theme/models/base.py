@@ -75,20 +75,8 @@ class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
     )
 
     # components tab panels
-    components_panels = [
-        # PageChooserPanel('feedback_form_page', ['form.FormSection']),
-        ButtonAction.button_action_panel,
-        Navbar.navbar_panel,
-        MultiFieldPanel(
-            [
-                NativeColorPanel(
-                    'body_background_color_solid',
-                ),
-            ],
-            heading='Content',
-            classname='collapsible collapsed',
-        )
-    ]
+    components_panels = ButtonAction.button_action_panels + Navbar.navbar_panels
+
     # branding tab panels
     branding_panels = [
         MultiFieldPanel(
