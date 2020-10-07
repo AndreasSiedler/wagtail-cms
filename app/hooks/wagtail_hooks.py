@@ -1,5 +1,5 @@
-# from django.templatetags.static import static
-# from django.utils.html import format_html
+from django.templatetags.static import static
+from django.utils.html import format_html
 # from django.utils.safestring import mark_safe
 
 from wagtail.core import hooks
@@ -73,12 +73,12 @@ def hide_snippets_menu_item(request, menu_items):
 #         static('css/custom-editor.css')
 #     )
 
-# @hooks.register('insert_editor_js', order=100)
-# def editor_js():
-#     return format_html(
-#         '<script src="{}"></script>',
-#         static('js/custom-editor.js')
-#     )
+@hooks.register('insert_editor_js', order=100)
+def editor_js():
+    return format_html(
+        '<script src="{}"></script>',
+        static('js/custom-editor-v2.js')
+    )
 
 # @hooks.register("insert_global_admin_css", order=100)
 # def global_admin_css():

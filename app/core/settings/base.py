@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'section',
     'hooks',
     'theme',
+    'stream',
 
     # Wagtail Apps
     'wagtail.contrib.routable_page',

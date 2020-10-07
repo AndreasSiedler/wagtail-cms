@@ -1,0 +1,33 @@
+<!-- /edit_handlers/object_list.html Original -->
+<ul class="objects">
+    {% for child in children.values %}
+    <li class="object collapsible  multi-field collapsed">
+        {% if child.block.label %}
+        <div class="title-wrapper">
+            <label {% if child.id_for_label %}for="{{ child.id_for_label }}" {% endif %}>
+                {{ child.block.label }}
+            </label>
+        </div>
+        {% endif %}
+        <div class="object-layout">
+            <div class="object-layout_big-part">
+                <!-- {{ child.render_as_object }} -->
+
+                <!-- /edit_handlers/multi_field_panel.html Original -->
+                <fieldset>
+                    <legend>{{ self.heading }}</legend>
+                    <ul class="fields">
+                    
+                        <!-- block_formls/struct.html Original-->
+                        <div class="{{ classname }}">
+                            <div class="field {% if child.block.required %}required{% endif %}">
+                                {{ child.render_form }}
+                            </div>
+                        </div>
+                    </ul>
+                </fieldset>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
