@@ -21,9 +21,37 @@ DEFAULTS = {
     ),
     'NAVBAR_LAYOUT_SCHEME_CHOICES_DEFAULT': 'light',
     'NAVBAR_LAYOUT_SCHEME_CHOICES': (
-        ('light_basic', 'Light'),
-        ('dark_basic', 'Dark'),
+        ('logo_left_nav_right', 'Simple right'),
+        ('logo_left_nav_right', 'Simple left'),
     ),
+    'NAVBAR_BACKGROUND_TYPE_CHOICES_DEFAULT': 'solid',
+    'NAVBAR_BACKGROUND_TYPE_CHOICES': (
+        ('solid', 'Solid Color'),
+        ('gradient', 'Gradient Color'),
+    ),
+    'NAVBAR_HEIGHT_CHOICES_DEFAULT': 'h-16',
+    'NAVBAR_HEIGHT_CHOICES': (
+        ('h-12', 'Small'),
+        ('h-16', 'Medium'),
+        ('h-20', 'Large'),
+        ('h-24', 'X-Large'),
+    ),
+    'NAVBAR_TOP_BOTTOM_PADDING_CHOICES_DEFAULT': 'py-40',
+    'NAVBAR_TOP_BOTTOM_PADDING_CHOICES': (
+        ('py-0', 'None'),
+        ('py-24', 'Small'),
+        ('py-40', 'Medium'),
+        ('py-56', 'Large'),
+        ('py-64', 'X-Large'),
+    ),
+    'NAVBAR_CONTAINER_WIDTH_CHOICES_DEFAULT': 'container',
+    'NAVBAR_CONTAINER_WIDTH_CHOICES': (
+        ('container max-w-2xl', 'Small'),
+        ('container max-w-4xl', 'Medium'),
+        ('container', 'Large'),
+        ('container max-w-full', 'Full'),
+    ),
+
 
     # Button
     'BUTTON_FONT_WEIGHT_CHOICES_DEFAULT': 'font-normal',
@@ -99,6 +127,20 @@ DEFAULTS = {
         ('font-normal', 'Normal'),
         ('font-medium', 'Medium'),
         ('font-bold', 'Bold'),
+    ),
+    # Hero
+    'HERO_IMAGE_SIZE_CHOICES_DEFAULT': 'max-w-md',
+    'HERO_IMAGE_SIZE_CHOICES': (
+        ('max-w-xs', 'X-Small'),
+        ('max-w-sm', 'Small'),
+        ('max-w-md', 'Medium'),
+        ('max-w-lg', 'Large'),
+        ('max-w-xl', 'X-Large'),
+        ('max-w-full', 'Full'),
+    ),
+    'HERO_ACTION_TYPE_CHOICES_DEFAULT': 'action_button',
+    'HERO_ACTION_TYPE_CHOICES': (
+        ('action_button', 'Action button'),
     ),
     # Feature
     'FEATURE_LAYOUT_CHOICES_DEFAULT': 'simple-centered',

@@ -96,7 +96,7 @@ class ButtonAction(models.Model):
     # )
 
     button_action_panels = (
-        HelpPanel(template='panels/custom_help_panel_template.html',
+        HelpPanel(template='panels/custom_help_panel_heading.html',
                   content='Action Button', ),
         # Color
         MultiFieldPanel(
@@ -112,8 +112,8 @@ class ButtonAction(models.Model):
                     ),
                 ),
             ),
-            heading='Color',
-            classname='collapsible',
+            heading='Design',
+            classname='collapsible collapsed',
         ),
         # Layout
         MultiFieldPanel(
@@ -127,7 +127,7 @@ class ButtonAction(models.Model):
                 ),
             ),
             heading='Layout',
-            classname='collapsible',
+            classname='collapsible collapsed',
         ),
         # Text
         MultiFieldPanel(
@@ -144,7 +144,7 @@ class ButtonAction(models.Model):
                 ),
             ),
             heading='Text',
-            classname='collapsible',
+            classname='collapsible collapsed',
         ),
     )
 

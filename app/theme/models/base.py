@@ -10,7 +10,7 @@ from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 from section.blocks import ButtonAction
-from .navbar import Navbar
+from section.sections import NavbarSection
 from .footer import Footer
 
 
@@ -45,7 +45,7 @@ class Colors(models.Model):
 
 
 @register_setting(icon='view')
-class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
+class Appearance(BaseSetting, NavbarSection, Footer, ButtonAction, Colors):
 
     # Navbar settings
     header_logo = models.ForeignKey(
@@ -75,7 +75,7 @@ class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
     )
 
     # components tab panels
-    components_panels = ButtonAction.button_action_panels + Navbar.navbar_panels
+    components_panels = ButtonAction.button_action_panels + NavbarSection.navbar_panels
 
     # branding tab panels
     branding_panels = [

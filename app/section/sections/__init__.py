@@ -3,7 +3,7 @@ from .hero_section import HeroSection
 from .feature_section import FeatureSection
 from .form_section import FormIndexPage, FormSection
 from .subscription_section import SubscriptionSection
-
+from .navbar_section import NavbarSection
 
 sections = [
     # ('base_section', SectionBase()),

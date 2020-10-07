@@ -11,6 +11,8 @@ from wagtail.core.fields import StreamField
 from section.blocks import ActionButton, PrimaryButton
 from wagtail.core.models import Page
 
+from section.settings import cr_settings
+
 
 @register_snippet
 class HeroSection(SectionBase, SectionTitleBlock, ButtonAction, Page):
@@ -47,6 +49,24 @@ class HeroSection(SectionBase, SectionTitleBlock, ButtonAction, Page):
         verbose_name='Image',
         related_name='+',
     )
+    hero_image_size = models.CharField(
+        max_length=50,
+        choices=cr_settings['HERO_IMAGE_SIZE_CHOICES'],
+        default=cr_settings['HERO_IMAGE_SIZE_CHOICES_DEFAULT'],
+        verbose_name=('Image size'),
+    )
+    hero_action_type_1 = models.CharField(
+        max_length=50,
+        choices=cr_settings['HERO_ACTION_TYPE_CHOICES'],
+        default=cr_settings['HERO_ACTION_TYPE_CHOICES_DEFAULT'],
+        verbose_name=('Action type (First)'),
+    )
+    hero_action_type_2 = models.CharField(
+        max_length=50,
+        choices=cr_settings['HERO_ACTION_TYPE_CHOICES'],
+        default=cr_settings['HERO_ACTION_TYPE_CHOICES_DEFAULT'],
+        verbose_name=('Action type (Second)'),
+    )
     hero_buttons = StreamField(
         [
             ('action_button', ActionButton()),
@@ -60,8 +80,15 @@ class HeroSection(SectionBase, SectionTitleBlock, ButtonAction, Page):
     # basic tab panels
     basic_panels = Page.content_panels + [
 
+        FieldPanel('hero_layout', heading='Layout', classname="title full"),
+
         MultiFieldPanel(
             [
+                FieldRowPanel([
+                    FieldPanel('hero_layout', classname="col6"),
+                    FieldPanel('hero_image_size', classname="col6"),
+
+                ]),
                 FieldRowPanel([
                     FieldPanel('section_heading',
                                heading='Heading', classname="col6"),

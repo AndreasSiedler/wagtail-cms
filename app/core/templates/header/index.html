@@ -1,25 +1,29 @@
-{% load wagtailimages_tags menu_tags%}
+{% load menu_tags%}
 
 <!--Nav-->
 {% with theme=settings.theme.Appearance %}
 <nav 
-    id="header" 
-    class="{% spaceless %}
-        {% comment %} NAVBAR_COLOR_SCHEME {% endcomment %}
-        {% endspaceless %}{% if theme.navbar_color_scheme == 'light_basic' %}bg-white text-gray-900 {% endif %}{% spaceless %}
-        {% endspaceless %}{% if theme.navbar_color_scheme == 'dark_basic' %}bg-gray-900 text-white {% endif %}{% spaceless %}
+    id="header"
+    style="{% spaceless %}
+        
+        {% endspaceless %}{% if theme.navbar_color_scheme == 'light_basic' and not theme.navbar_transparent %}background-color: white{% spaceless %}
+        {% endspaceless %}{% elif theme.navbar_color_scheme == 'dark_basic' and not theme.navbar_transparent %}background-color: black{% endif %}{% spaceless %}
+        {% endspaceless %}"
 
-        {% comment %} NAVBAR_FIXED {% endcomment %}
+    class="{% spaceless %}
+    
+        {% endspaceless %}{% if theme.navbar_transparent %}absolute {% endif %}{% spaceless %}
         {% endspaceless %}{% if theme.navbar_fixed %}fixed {% endif %}{% spaceless %}
+        {% endspaceless %}{{ theme.navbar_top_bottom_padding }} {% spaceless %}
         {% endspaceless %}w-full">
 
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
-            
-        <div class="pl-4 flex items-center">
-            <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/"> 
-                {% image theme.header_logo fill-320x240 class="h-12 w-auto"%}
-            </a>
-        </div>
+    <div class="{% spaceless %}
+    
+        {% endspaceless %}{{ theme.navbar_container_width }} {% spaceless %}
+        {% endspaceless %}{{ theme.navbar_height }} {% spaceless %} 
+        {% endspaceless %}mx-auto flex flex-wrap items-center justify-between mt-0">
+        
+        {% include "header/logo.html" %}
 
         <div class="block lg:hidden pr-4">
             <button id="nav-toggle" class="flex items-center p-1 text-orange-800 hover:text-gray-900">
@@ -28,8 +32,8 @@
         </div>
 
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 z-20" id="nav-content">
-            {% main_menu template="header/menu.html" %} 
-            <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Action</button>
+            {% main_menu template="header/menu.html" %}
+            {% include "header/action.html" %}
         </div>
     </div>
 </nav>
