@@ -1,17 +1,14 @@
+""" Section Model """
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from django.http import JsonResponse
 
-from wagtail.core.blocks import PageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmetadata.models import MetadataPageMixin
 
 from section.sections import (
-    FeatureSection, HeroSection, FormSection, SubscriptionSection)
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-
-from django.views.decorators.http import require_http_methods
+    FeatureSection, HeroSection, FormSection, SubscriptionSection, ContentSection)
 
 
 class SectionPage(MetadataPageMixin, Page):
@@ -31,6 +28,14 @@ class SectionPage(MetadataPageMixin, Page):
                     FeatureSection,
                     icon='list-ul',
                     template='sections/feature_section.html'
+                )
+            ),
+            (
+                'content_section',
+                SnippetChooserBlock(
+                    ContentSection,
+                    icon='list-ul',
+                    template='sections/content_section.html'
                 )
             ),
             (
@@ -67,7 +72,7 @@ class SectionPage(MetadataPageMixin, Page):
         if request.is_ajax():
             # Check request type via query params
             request_type = request.GET.get('type', 'default')
-            
+
             # FORM SECTION SUBMIT
             if request.method == 'POST' and request_type == 'submit-form':
                 fs = FormSection.objects.get(pk=request.POST['id'])

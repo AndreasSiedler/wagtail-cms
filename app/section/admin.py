@@ -4,7 +4,7 @@ from wagtail.contrib.modeladmin.options import (
     modeladmin_register
 )
 from section.sections import (
-    HeroSection, FeatureSection, SubscriptionSection)
+    HeroSection, FeatureSection, SubscriptionSection, ContentSection)
 from .sections import FormIndexPage, FormSection
 from section.models import SectionPage
 
@@ -19,6 +19,13 @@ class HeroSectionModelAdmin(ModelAdmin):
 class FeatureSectionModelAdmin(ModelAdmin):
     model = FeatureSection
     menu_label = "Feature Sections"
+    add_to_settings_menu = False
+    exclude_from_explorer = True
+
+
+class ContentSectionModelAdmin(ModelAdmin):
+    model = ContentSection
+    menu_label = "Conent Sections"
     add_to_settings_menu = False
     exclude_from_explorer = True
 
@@ -65,12 +72,13 @@ class FormSectionModelAdmin(ModelAdmin):
 
 # Register your models here.
 class ComponentsGroupAdmin(ModelAdminGroup):
-    menu_label = "Components"
+    menu_label = "Sections"
     menu_order = 100
     menu_icon = "placeholder"
     items = [
         FormSectionModelAdmin,
         HeroSectionModelAdmin,
+        ContentSectionModelAdmin,
         FeatureSectionModelAdmin,
         SubscriptionSectionModelAdmin,
     ]
