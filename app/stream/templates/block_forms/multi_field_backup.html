@@ -1,0 +1,39 @@
+<!-- /wagtail/admin/templates/wagtailadmin/edit_handlers/object_list.html -->
+<ul class="objects">
+    {% for child in children.values %}
+    <li class="object collapsible  multi-field collapsed">
+        {% if child.block.label %}
+        <div class="title-wrapper">
+            <label {% if child.id_for_label %}for="{{ child.id_for_label }}" {% endif %}>
+                {{ child.block.label }}
+            </label>
+        </div>
+        {% endif %}
+        <div class="object-layout">
+            <div class="object-layout_big-part">
+                <!-- {{ child.render_as_object }} -->
+
+
+                <!--  -->
+                <fieldset>
+                    <legend>{{ self.heading }}</legend>
+                    <ul class="fields">
+                        <div class="{{ classname }}">
+                            {% for child in children.values %}
+                            <div class="field {% if child.block.required %}required{% endif %}">
+                                {{ child.render_form }}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </ul>
+                </fieldset>
+                <!-- Fieldset End -->
+
+
+
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,21 @@
+{% load wagtailcore_tags %}
+
+{% with global=settings.theme.Appearance section=self %}
+<button style="background-color: {% spaceless %}
+    {% endspaceless %}{% if section.button_action_bg_color_type == 'primary' %}{{ global.color_primary }}{% spaceless %}
+    {% endspaceless %}{% elif section.button_action_bg_color_type == 'secondary' %}{{ global.color_secondary }}{% spaceless %}
+    {% endspaceless %}{% elif section.button_action_bg_color_type == 'custom' %}{{ section.button_action_bg_color }}{% spaceless %}
+    {% endspaceless %}{% elif global.button_action_bg_color_type == 'primary' %}{{ global.color_primary }}{% spaceless %}
+    {% endspaceless %}{% elif global.button_action_bg_color_type == 'secondary' %}{{ global.color_secondary }}{% spaceless %}
+    {% endspaceless %}{% elif global.button_action_bg_color_type == 'custom' %}{{ global.button_action_bg_color }}{% spaceless %}
+    {% endspaceless %}{% else %}#007d7e{% endif %};" class="{% spaceless %}
+    {% endspaceless %}{% firstof section.button_action_padding global.button_action_padding 'py-5 px-10' %} {% spaceless %}
+    {% endspaceless %}{% firstof section.button_action_border_radius global.button_action_border_radius 'rounded' %}">
+    {% if button_type == "first_button" %}
+    {{ section.hero_first_button_text }}
+    {% elif button_type == "second_button" %}
+    {{ section.hero_second_button_text }}
+    {% endif %}
+</button>
+
+{% endwith %}

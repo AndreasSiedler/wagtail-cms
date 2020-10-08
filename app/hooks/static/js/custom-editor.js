@@ -5,8 +5,11 @@
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
 
+    // Init cusom collapsible blocks
+    initCustomCollapsibleBlocks();
+
     // Select the node that will be observed for mutations
-    const targetNode = document.getElementById('body-list');
+    const targetNode = document.getElementById('content-list');
 
     //Append Setting Icons on Page Load
     targetNode.querySelectorAll('.c-sf-block__actions').forEach(function (el) {
@@ -41,6 +44,30 @@
 
 
 //** **//
+//** Collapse and add click listener to collapsible stream blocks**//
+//** **//
+const initCustomCollapsibleBlocks = () => {
+  $('.object.multi-field.collapsible').each(function () {
+    var $li = $(this);
+    var $fieldset = $li.find('fieldset');
+    if ($li.hasClass('collapsed') && $li.find('.error-message').length == 0) {
+      $fieldset.hide();
+    }
+
+    $li.find('> .title-wrapper').on('click', function () {
+      if (!$li.hasClass('collapsed')) {
+        $li.addClass('collapsed');
+        $fieldset.hide('slow');
+      } else {
+        $li.removeClass('collapsed');
+        $fieldset.show('show');
+      }
+    });
+  });
+}
+
+
+//** **//
 //** On Settings Clicked **//
 //** **//
 const onActivateSettings = (settingsButton) => {
@@ -64,7 +91,7 @@ const onActivateSettings = (settingsButton) => {
   parentContainer.querySelectorAll(".block_setting_choice, block_content_choice").forEach(function (el) {
     el.parentElement.style.display = 'block';
     el.querySelectorAll("select").forEach(function (el) {
-      
+
       const value = el.options[el.selectedIndex].value;
       if (value) {
         var parentContainer = el.closest('.c-sf-block');
@@ -72,11 +99,11 @@ const onActivateSettings = (settingsButton) => {
         parentContainer.querySelectorAll(`.block_setting_sub.${value}`).forEach(function (el) {
           console.log(el);
           el.parentElement.style.display = 'block';
-        })  
+        })
       }
     })
   })
-  
+
 
 }
 
@@ -114,7 +141,7 @@ const onSelectChoice = (selectField, value) => {
     el.parentElement.style.display = 'none';
   })
   // Show specific sub fields
-  if(value) {
+  if (value) {
     parentContainer.querySelectorAll(`.block_setting_sub.${value}`).forEach(function (el) {
       console.log(el);
       el.parentElement.style.display = 'block';
@@ -131,7 +158,7 @@ const onSelectChoice = (selectField, value) => {
   document.addEventListener('DOMContentLoaded', function () {
 
     // Select the node that will be observed for mutations
-    const targetNode = document.getElementById('body-list');
+    const targetNode = document.getElementById('content-list');
     // Options for the observer (which mutations to observe)
     const config = { attributes: false, childList: true, subtree: false };
     // Callback function to execute when mutations are observed
@@ -139,9 +166,33 @@ const onSelectChoice = (selectField, value) => {
       // Use traditional 'for loops' for IE 11
       for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
-          console.log('A child node has been added or removed.', );
+          console.log('A child node has been added or removed.',);
           mutation.addedNodes.forEach(function (container) {
-            
+
+            //** **//
+            //** Collapse and add click listener to collapsible stream blocks**//
+            //** **//
+            var $container = $(container);
+            $container.find('.object.multi-field.collapsible').each(function () {
+              var $li = $(this);
+              var $fieldset = $li.find('fieldset');
+              if ($li.hasClass('collapsed') && $li.find('.error-message').length == 0) {
+                $fieldset.hide();
+              }
+
+              $li.find('> .title-wrapper').on('click', function () {
+                if (!$li.hasClass('collapsed')) {
+                  $li.addClass('collapsed');
+                  $fieldset.hide('slow');
+                } else {
+                  $li.removeClass('collapsed');
+                  $fieldset.show('show');
+                }
+              });
+            });
+
+
+
             console.log(container);
             //Append Setting Icons on Page Load
             container.querySelectorAll('.c-sf-block__actions').forEach(function (el) {

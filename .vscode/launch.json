@@ -14,7 +14,7 @@
                 "--noreload"
             ],
             "django": true,
-            "justMyCode": false
+            "justMyCode": true
         }
     ]
 }

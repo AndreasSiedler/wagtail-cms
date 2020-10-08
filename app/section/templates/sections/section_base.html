@@ -1,0 +1,18 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{% image self.section_background_image width-1920 format-jpeg jpegquality-40 as section_bg_image %}
+
+<div style="{% spaceless %}
+    {% endspaceless %}{% if self.section_background_type == 'transparent' %}background-color: transparent{% spaceless %}
+    {% endspaceless %}{% elif self.section_background_type == 'solid' %}background-color: {{ self.section_background_color }}{% spaceless %}
+    {% endspaceless %}{% elif self.section_background_type == 'gradient' %}background: linear-gradient(90deg, {{ self.section_background_color }} 0%, {{ self.section_background_color_2 }} 100%){% spaceless %}
+    {% endspaceless %}{% elif self.section_background_type == 'image' %}background-image: url({{ section_bg_image.url }}){% spaceless %}
+    {% endspaceless %}{% else %}background-color: #007d7e{% endif %};"
+    class="{{self.section_top_bottom_padding}} bg-no-repeat bg-cover bg-center">
+    <!-- Container -->
+    <!-- <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center"> -->
+    <div
+        class="{% block section_class %}{% endblock %} {{self.section_container_width}} {% if self.section_color_theme == 'dark' %}text-gray-900{% else %}text-white{% endif %} mx-auto px-3">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>

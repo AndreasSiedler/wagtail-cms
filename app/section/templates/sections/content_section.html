@@ -1,0 +1,20 @@
+<!-- Extends Base section -->
+{% extends "sections/section_base.html" %}
+<!-- Load template tags -->
+{% load wagtailcore_tags %}
+
+
+<!-- Define section base classes here -->
+{% block section_class %}{% endblock %}
+
+{% block content %}
+
+<div class="flex flex-col items-start">
+	{% include "blocks/section_hero_image.html" %}
+	{% include "blocks/section_subheading.html" %}
+	{% include "blocks/section_heading.html" %}
+	{% include "blocks/section_description.html" %}
+	{{ self.content_richtext|richtext }}
+</div>
+
+{% endblock %}

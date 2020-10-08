@@ -9,8 +9,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail_color_panel.fields import ColorField
 from wagtail_color_panel.edit_handlers import NativeColorPanel
 
-from components.models import ButtonAction
-from components.sections import Navbar
+from section.blocks import ButtonAction
+from section.sections import NavbarSection
 from .footer import Footer
 
 
@@ -45,7 +45,7 @@ class Colors(models.Model):
 
 
 @register_setting(icon='view')
-class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
+class Appearance(BaseSetting, NavbarSection, Footer, ButtonAction, Colors):
 
     # Navbar settings
     header_logo = models.ForeignKey(
@@ -75,20 +75,8 @@ class Appearance(BaseSetting, Navbar, Footer, ButtonAction, Colors):
     )
 
     # components tab panels
-    components_panels = [
-        # PageChooserPanel('feedback_form_page', ['form.FormSection']),
-        ButtonAction.button_action_panel,
-        Navbar.navbar_panel,
-        MultiFieldPanel(
-            [
-                NativeColorPanel(
-                    'body_background_color_solid',
-                ),
-            ],
-            heading='Content',
-            classname='collapsible collapsed',
-        )
-    ]
+    components_panels = ButtonAction.button_action_panels + NavbarSection.navbar_panels
+
     # branding tab panels
     branding_panels = [
         MultiFieldPanel(

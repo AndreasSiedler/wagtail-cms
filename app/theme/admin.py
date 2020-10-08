@@ -1,12 +1,18 @@
-# from wagtail.contrib.modeladmin.options import (
-#     ModelAdmin,
-#     ModelAdminGroup,
-#     modeladmin_register
-# )
+from wagtail.contrib.modeladmin.options import (
+    ModelAdmin,
+    modeladmin_register
+)
+from .models import Appearance
 # from theme.models import Header
 # from wagtail.admin.edit_handlers import FieldPanel
-# from theme.util import CustomURLHelper
+from theme.util import CustomURLHelper
 
+class ThemeAdmin(ModelAdmin):
+    """
+    Create ThemeAdmin instance to use it for the url_helper - REVERSING
+    If you want to hide it from the menu admin bar exclude it in the hooks section with the intace type
+    """
+    model = Appearance
 
 # class ThemeHeaderModelAdmin(ModelAdmin):
 #     model = Header
@@ -32,4 +38,4 @@
 #     ]
 
 
-# modeladmin_register(ThemeGroupAdmin)
+modeladmin_register(ThemeAdmin)

@@ -1,0 +1,102 @@
+{% extends "sections/section_base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<!-- Features section -->
+
+
+<!-- Section Header -->
+{% include "sections/section_header.html" %}
+
+<!-- Section Body -->
+<form id="form-{{self.id}}" novalidate method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}?type=submit-form'>
+    {% csrf_token %}
+    <input type="hidden" name="id" value={{self.id}}>
+    {% for field in self.get_form.visible_fields %}
+    {% with widget=field.field.widget field_wrapper_classes="" field_classes="appearance-none text-white bg-transparent rounded-lg border-2 border-white border-solid w-full py-6 px-6" %}
+    <div class="form-group mb-10">
+        <!-- <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label> -->
+        {% if widget.input_type == "select" %}
+        <div class="relative">
+            <select class="{{field_classes}}" name="{{ field.name }}" id="{{ field.id_for_label }}"
+                {% if widget.allow_multiple_selected %}multiple{% endif %}>
+                <option value="" disabled selected>{{ field.label }}</option>
+                {% for option in widget.choices %}
+                <option value={{option.0}}>{{option.1}}</option>
+                {% endfor %}
+            </select>
+            {% if not widget.allow_multiple_selected %}
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+            </div>
+            {% endif %}
+        </div>
+        {% elif widget.input_type == "checkbox" %}
+        <input type="{{ widget.input_type }}" placeholder="{{ field.label }}" name="{{ field.name }}"
+            id="{{ field.id_for_label }}" {% if field.field.required %}required="required" {% endif %}>
+        {% elif widget.input_type %}
+        <input
+            type="{% if widget.format_key == 'DATE_INPUT_FORMATS' %}date{% elif widget.format_key == 'DATETIME_INPUT_FORMATS' %}datetime-local{% else %}{{widget.input_type}}{% endif %}"
+            placeholder="{{ field.label }}" class="{{field_classes}}" name="{{ field.name }}"
+            id="{{ field.id_for_label }}" {% if field.field.required %}required="required" {% endif %}>
+        {% else %}
+        <textarea placeholder="{{ field.label }}" class="{{field_classes}}" name="{{ field.name }}"
+            id="{{ field.id_for_label }}" {% if field.field.required %}required="required" {% endif %} rows="4"
+            cols="50"></textarea>
+        {% endif %}
+        {% comment "Optional note" %}
+        {{ field }}
+        {% endcomment %}
+        <p id="{{ field.id_for_label }}_error" class="field-error hidden text-red-500 text-xs italic"></p>
+    </div>
+    {% endwith %}
+    {% endfor %}
+    <!-- <button type='submit'>Submit</button> -->
+    {% include "buttons/button_action.html" %}
+</form>
+
+
+<!-- Features section end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"
+    integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw=="
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        // console.log({{self.id}})
+        var $myForm = $('#form-{{self.id}}')
+        $myForm.submit(function (event) {
+            $myForm.find('.field-error').addClass('hidden');
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+            $.ajax({
+                type: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+            })
+        })
+
+        function handleFormSuccess(data, textStatus, jqXHR) {
+            $myForm[0].reset(); // reset form data
+        }
+
+        function handleFormError(data, textStatus, errorThrown) {
+            const responseJSON = JSON.parse(data.response);
+            for (const [key, value] of Object.entries(responseJSON.errors)) {
+                $myForm.find(`#id_${key}_error`).removeClass('hidden').text(value);
+            }
+        }
+    })
+</script>
+{% endblock %}
+
+{% block extra_js %}
+{# Override this in templates to add extra javascript #}
+
+{% endblock %}
