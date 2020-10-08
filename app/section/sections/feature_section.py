@@ -12,6 +12,7 @@ from section.blocks import FeatureBlock
 
 @register_snippet
 class FeatureSection(SectionBase):
+    """ Feature Section """
 
     feature_layout = models.CharField(
         null=True,

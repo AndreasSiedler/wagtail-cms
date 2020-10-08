@@ -1,0 +1,31 @@
+<!-- Define Layouts with include files here -->
+{% extends "block_sections/section_base.html" %}
+{% load wagtailcore_tags %}
+
+
+{% block section_class %}container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center{% endblock %}
+
+{% block content %}
+<!--Simple centered-->
+{% if self.base.hero_layout == "simple_centered" %}
+<div class="flex flex-col items-center text-center items-start">
+	{% include_block self.image %}
+	{% include_block self.subheading %}
+	{% include_block self.heading %}
+	{% include_block self.description %}
+</div>
+
+<!--Image on right-->
+{% elif self.base.hero_layout == "image_right" %}
+<div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+	{% include_block self.subheading %}
+	{% include_block self.heading %}
+	{% include_block self.description %}
+</div>
+<div class="w-full md:w-3/5 py-6 text-center">
+	{% include_block self.image %}
+</div>
+
+{% endif %}
+
+{% endblock %}

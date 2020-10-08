@@ -1,0 +1,4 @@
+<!-- Subheading -->
+{% if self.section_subheading %}
+<p class="{% firstof self.section_subheading_font_size global.section_heading_font_size 'text-5xl' %} {% firstof self.section_subheading_font_weight global.section_heading_font_weight 'font-normal' %}">{{ self.section_subheading }}</p>
+{% endif %}

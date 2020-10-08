@@ -1,0 +1,6 @@
+<!-- Heading -->
+{% if self.section_heading %}
+<h1
+    class="{% firstof self.section_heading_font_size global.section_heading_font_size 'text-5xl' %} {% firstof self.section_heading_font_weight global.section_heading_font_weight 'font-normal' %} my-4 leading-tight">
+    {{ self.section_heading }}</h1>
+{% endif %}
